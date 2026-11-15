@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/system1-agents-logo.png" alt="System 1 Agents: a System 1 robot ahead of slower LLM agents" width="540">
+  <img src="SystemOneAgents_logo.jpg" alt="System 1 Agents: a System 1 robot ahead of slower LLM agents" width="540">
 
   # System 1 Agents
 
