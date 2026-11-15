@@ -1,14 +1,9 @@
 <div align="center">
   <img src="SystemOneAgents_logo.jpg" alt="System 1 Agents: a System 1 robot ahead of slower LLM agents" width="540">
 
-  # System 1 Agents
-
   **Local, reliable and fast agentic AI without text generation**
 
   *Research implementation accompanying “System 1 agents: a method for local, reliable and fast agentic AI”*
-
-  **Eleftherios Tzanis · Michail E. Klontzas**  
-  Artificial Intelligence and Translational Imaging (ATI) Lab, University of Crete
 </div>
 
 ---
