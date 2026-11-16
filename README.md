@@ -116,7 +116,9 @@ What each step should give:
 | replay | for each of the six models, every request identical and 0 missing answers (1,179 imaging, 123 external, 824 biomedical) |
 | analysis | `runs/analysis/metrics.json` equal to `results/analysis/metrics.json`; in `tables.md`, fully correct requests over the 108 pairs: 73 System 1 ahead, 11 LLM ahead, 24 no significant difference |
 | fabrication, Table 1 | `diff -r runs/fabrication ../results/fabrication` and `diff -r runs/scorecard ../results/scorecard` print nothing |
-| figures | `runs/figures/figure_data.json` equal to `figures/figure_data.json`; the figures plot values from `results/analysis/metrics.json` and `results/fabrication/` |
+| figures | `runs/figures/figure_data.json` equal to `figures/figure_data.json`. The PNGs are byte-identical to those in `figures/` when the fonts they were drawn with are installed (see below) |
+
+The figures were drawn with Liberation Sans and Liberation Mono 2.1.5 and URW Nimbus Sans, which the study's Ubuntu 24.04 desktop had. Without them, matplotlib falls back to another font: the plotted values stay the same, but the lettering and so the PNG files differ. On a minimal Ubuntu 22.04 (for example WSL), `sudo apt install fonts-liberation2 fonts-urw-base35` gave byte-identical PNGs.
 
 To have a coding agent run and check all of this, open the repository in Claude Code and ask it to reproduce the results: it uses the [`reproduce-results`](.claude/skills/reproduce-results/SKILL.md) skill.
 
