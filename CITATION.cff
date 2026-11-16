@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "System 1 Agents"
+abstract: "MCP tool-calling agents whose decisions are made by one-pass decision models instead of a generating LLM: the System 1 agent, the LLM-agent baseline, the scorer, the evaluation data and the results of the study."
+type: software
+authors:
+  - family-names: Tzanis
+    given-names: Eleftherios
+  - family-names: Klontzas
+    given-names: Michail E.
+repository-code: "https://github.com/eltzanis/SystemOneAgents"
+license: Apache-2.0
+version: 1.0.0
+keywords:
+  - agents
+  - tool calling
+  - Model Context Protocol
+  - decision models
+  - medical imaging
+  - biomedical research
+preferred-citation:
+  type: generic
+  title: "System 1 agents: a method for local, reliable and fast agentic AI"
+  authors:
+    - family-names: Tzanis
+      given-names: Eleftherios
+    - family-names: Klontzas
+      given-names: Michail E.
+  year: 2026
