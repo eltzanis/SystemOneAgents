@@ -246,8 +246,9 @@ A decision model gives the same answer to the same question on the same hardware
 - **Eleftherios Tzanis, PhD** - corresponding author: [eleftherios.tzanis@ki.se](mailto:eleftherios.tzanis@ki.se) · [etzanis@uoc.gr](mailto:etzanis@uoc.gr)
 - **Michail E. Klontzas, MD, PhD, EDiR**
 
-- Artificial Intelligence and Translational Imaging (ATI) Lab, Department of Radiology, School of Medicine, University of Crete, Heraklion, Crete, Greece
-- Division of Radiology, CLINTEC, Karolinska Institutet, Huddinge, Sweden; Department of Medical Imaging, University Hospital of Heraklion, Crete, Greece.
+  Artificial Intelligence and Translational Imaging (ATI) Lab, Department of Radiology, School of Medicine, University of Crete, Heraklion, Crete, Greece
+
+  Division of Radiology, CLINTEC, Karolinska Institutet, Huddinge, Sweden; Department of Medical Imaging, University Hospital of Heraklion, Crete, Greece.
 
 ## Funding
 
