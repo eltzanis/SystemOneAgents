@@ -1,0 +1,2824 @@
+{
+ "servers": {
+  "eda": {
+   "id": "eda",
+   "python": "/home/et/miniconda3/envs/reco_stats/bin/python",
+   "module": "mcp_servers.eda",
+   "description": "Exploratory data analysis of a tabular CSV/Excel file with plots and statistical tests.",
+   "root": null
+  },
+  "feature-importance": {
+   "id": "feature-importance",
+   "python": "/home/et/miniconda3/envs/reco_stats/bin/python",
+   "module": "mcp_servers.feature_importance_analysis",
+   "description": "Feature importance and feature selection analysis for a tabular dataset with a target column.",
+   "root": null
+  },
+  "model-performance-comparison": {
+   "id": "model-performance-comparison",
+   "python": "/home/et/miniconda3/envs/reco_stats/bin/python",
+   "module": "mcp_servers.model_performance_comparison",
+   "description": "Statistical comparison of the performance of several trained models.",
+   "root": null
+  },
+  "pyradiomics": {
+   "id": "pyradiomics",
+   "python": "/home/et/miniconda3/envs/reco_radiomics/bin/python",
+   "module": "mcp_servers.pyradiomics_feature_extraction",
+   "description": "Radiomics feature extraction from medical images and segmentation masks.",
+   "root": null
+  },
+  "pycaret-classification": {
+   "id": "pycaret-classification",
+   "python": "/home/et/miniconda3/envs/reco_pycaret/bin/python",
+   "module": "mcp_servers.pycaret_classification",
+   "description": "AutoML classification on tabular data (train, compare and apply classifiers) with PyCaret.",
+   "root": null
+  },
+  "pycaret-regression": {
+   "id": "pycaret-regression",
+   "python": "/home/et/miniconda3/envs/reco_pycaret/bin/python",
+   "module": "mcp_servers.pycaret_regression",
+   "description": "AutoML regression on tabular data (train, compare and apply regressors) with PyCaret.",
+   "root": null
+  },
+  "totalsegmentator": {
+   "id": "totalsegmentator",
+   "python": "/home/et/miniconda3/envs/reco_segmentation/bin/python",
+   "module": "mcp_servers.totalsegmentator",
+   "description": "Automatic segmentation of anatomical structures (organs, bones, vessels, muscles) in CT and MR images.",
+   "root": null
+  },
+  "nnunet": {
+   "id": "nnunet",
+   "python": "/home/et/miniconda3/envs/reco_segmentation/bin/python",
+   "module": "mcp_servers.nnunet",
+   "description": "Train and run nnU-Net segmentation models on a custom medical imaging dataset.",
+   "root": null
+  },
+  "medimg-classification-2d": {
+   "id": "medimg-classification-2d",
+   "python": "/home/et/miniconda3/envs/reco_classification/bin/python",
+   "module": "mcp_servers.medimg_classification_2d",
+   "description": "Deep learning classification of 2D medical images (train, fine-tune and run CNNs).",
+   "root": null
+  },
+  "medimg-classification-3d": {
+   "id": "medimg-classification-3d",
+   "python": "/home/et/miniconda3/envs/reco_classification/bin/python",
+   "module": "mcp_servers.medimg_classification_3d",
+   "description": "Deep learning classification of 3D medical image volumes (train, fine-tune and run 3D CNNs).",
+   "root": null
+  },
+  "merlin": {
+   "id": "merlin",
+   "python": "/home/et/miniconda3/envs/reco_repo_merlin/bin/python",
+   "module": "server",
+   "description": "Merlin 3D CT foundation model for abdominal CT (embeddings, phenotype classification, five-year disease risk, radiology report generation).",
+   "root": "/home/et/Desktop/Projects/system_1_agents_v2/third_party/reco_user/merlin"
+  }
+ },
+ "tools": [
+  {
+   "server": "eda",
+   "name": "enhanced_eda_analyze",
+   "description": "Perform comprehensive exploratory data analysis with publication-quality visualizations and advanced statistical tests",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to input data file (CSV or Excel)"
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Output directory for analysis results"
+     },
+     "sheet_name": {
+      "type": "string",
+      "description": "Sheet name for Excel files (optional)"
+     },
+     "target_column": {
+      "type": "string",
+      "description": "Target column for relationship analysis (optional)"
+     },
+     "categorical_threshold": {
+      "type": "integer",
+      "description": "Max unique values to consider categorical (default: 10)",
+      "default": 10
+     },
+     "correlation_method": {
+      "type": "string",
+      "enum": [
+       "pearson",
+       "spearman",
+       "kendall"
+      ],
+      "description": "Correlation method (default: pearson)",
+      "default": "pearson"
+     },
+     "dpi": {
+      "type": "integer",
+      "description": "Figure resolution in DPI (default: 300)",
+      "default": 300
+     },
+     "colorblind_safe": {
+      "type": "boolean",
+      "description": "Use colorblind-safe palettes (default: true)",
+      "default": true
+     },
+     "statistical_tests": {
+      "type": "boolean",
+      "description": "Perform statistical tests (default: true)",
+      "default": true
+     },
+     "distribution_analysis": {
+      "type": "boolean",
+      "description": "Analyze distributions with Q-Q plots (default: true)",
+      "default": true
+     },
+     "data_quality_analysis": {
+      "type": "boolean",
+      "description": "Analyze data quality (default: true)",
+      "default": true
+     },
+     "vif_analysis": {
+      "type": "boolean",
+      "description": "Calculate VIF for multicollinearity (default: true)",
+      "default": true
+     },
+     "detect_class_imbalance": {
+      "type": "boolean",
+      "description": "Detect class imbalance in target (default: true)",
+      "default": true
+     },
+     "generate_insights": {
+      "type": "boolean",
+      "description": "Generate automated insights (default: true)",
+      "default": true
+     },
+     "create_html_report": {
+      "type": "boolean",
+      "description": "Create interactive HTML report (default: true)",
+      "default": true
+     },
+     "sample_size": {
+      "type": "integer",
+      "description": "Sample size for large datasets (default: 10000)",
+      "default": 10000
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "eda",
+   "name": "configure_plot_style",
+   "description": "Configure plot styling for EDA visualizations",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "dpi": {
+      "type": "integer",
+      "description": "Resolution in DPI (100-600)",
+      "default": 300
+     },
+     "style": {
+      "type": "string",
+      "enum": [
+       "seaborn-v0_8-darkgrid",
+       "seaborn-v0_8-whitegrid",
+       "seaborn-v0_8-dark",
+       "seaborn-v0_8-white",
+       "ggplot",
+       "bmh"
+      ],
+      "description": "Plot style",
+      "default": "seaborn-v0_8-whitegrid"
+     },
+     "palette": {
+      "type": "string",
+      "enum": [
+       "colorblind",
+       "husl",
+       "deep",
+       "muted",
+       "bright",
+       "pastel"
+      ],
+      "description": "Color palette",
+      "default": "colorblind"
+     },
+     "context": {
+      "type": "string",
+      "enum": [
+       "paper",
+       "notebook",
+       "talk",
+       "poster"
+      ],
+      "description": "Plot context (affects font sizes)",
+      "default": "paper"
+     },
+     "font_scale": {
+      "type": "number",
+      "description": "Font size multiplier (0.5-3.0)",
+      "default": 1.2
+     },
+     "save_format": {
+      "type": "string",
+      "enum": [
+       "png",
+       "svg",
+       "pdf",
+       "eps"
+      ],
+      "description": "Output format",
+      "default": "png"
+     }
+    }
+   }
+  },
+  {
+   "server": "feature-importance",
+   "name": "feature_importance_analysis",
+   "description": "Run feature importance analysis and selection on a tabular CSV for classification or regression. Methods: 'rf' (Random Forest), 'f_test' (ANOVA / F-statistic), 'mutual_info', 'rfe' (Recursive Feature Elimination). Auto-detects task type and target/ID columns when not specified. Writes a `feature_importance.csv` plus one `top_<N>_features.csv` per requested cutoff, and (optionally) importance / cumulative / correlation / PCA / t-SNE plots.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to input CSV file."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results, plots, and feature_importance_analysis.log are written."
+     },
+     "target_column": {
+      "type": "string",
+      "description": "Target column for prediction. Auto-detected from common names ('label', 'target', 'diagnosis', 'outcome', etc.) if omitted."
+     },
+     "exclude_columns": {
+      "type": "string",
+      "description": "Comma-separated columns to exclude from features (e.g. 'subject_id,patient_id')."
+     },
+     "auto_exclude_id_columns": {
+      "type": "boolean",
+      "description": "Auto-detect and exclude ID-like columns. Default: true.",
+      "default": true
+     },
+     "task_type": {
+      "type": "string",
+      "enum": [
+       "classification",
+       "regression"
+      ],
+      "description": "Task type. Auto-detected from the target if omitted."
+     },
+     "method": {
+      "type": "string",
+      "description": "Feature selection method. Accepts flexible names ('Random Forest', 'ANOVA', 'Mutual Information', 'RFE'). Canonical: 'rf', 'f_test', 'mutual_info', 'rfe'. Default: 'rf'.",
+      "default": "rf"
+     },
+     "top_features": {
+      "type": "string",
+      "description": "Comma-separated top-N cutoffs (e.g. '10,50,100'). Default: '10,50,100'.",
+      "default": "10,50,100"
+     },
+     "encode_categorical": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "onehot",
+       "label",
+       "target",
+       "none"
+      ],
+      "description": "How to encode categorical features. Default: 'auto'.",
+      "default": "auto"
+     },
+     "max_onehot_cardinality": {
+      "type": "integer",
+      "description": "Max unique values for one-hot encoding when encode_categorical='auto'. Default: 10.",
+      "default": 10
+     },
+     "create_plots": {
+      "type": "boolean",
+      "description": "Generate visualization plots (importance, cumulative, correlation, PCA, t-SNE). Default: true.",
+      "default": true
+     },
+     "top_n_plot": {
+      "type": "integer",
+      "description": "Number of top features to show in importance plots. Default: 30.",
+      "default": 30
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "model-performance-comparison",
+   "name": "model_performance_comparison",
+   "description": "This tool compares model performance between training test results and inference results\n    to detect performance degradation over time or on new datasets. It identifies metrics that\n    have declined and suggests fine-tuning when performance drops significantly.",
+   "input_schema": {
+    "properties": {
+     "class_names": {
+      "description": "List of class names for better reporting (optional)",
+      "type": "array"
+     },
+     "decline_threshold": {
+      "description": "Threshold percentage for significant performance decline (default: 5%)",
+      "type": "number"
+     },
+     "inference_metrics_path": {
+      "description": "Path to metrics.json file from inference evaluation",
+      "type": "string"
+     },
+     "output_dir": {
+      "description": "Directory where comparison results will be saved",
+      "type": "string"
+     },
+     "training_metrics_path": {
+      "description": "Path to test_metrics.json file from training evaluation",
+      "type": "string"
+     }
+    },
+    "required": [
+     "training_metrics_path",
+     "inference_metrics_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "pyradiomics",
+   "name": "pyradiomics_extract_features",
+   "description": "Extract radiomic features from medical images (CT, MRI, etc.) using PyRadiomics. Pairs images with segmentation masks by subject ID, supports multi-label masks and organ-subfolder layouts, and writes one CSV per label/organ. Filters accept flexible names (case-insensitive, common typos): e.g. 'log', 'square root', 'lbp', 'wavelet'. Available filters: Original, Wavelet, LoG, Exponential, Gradient, SquareRoot, LBP2D, LBP3D. If a `targets_csv` is supplied, ALL its columns (target + predictors like age, sex, tumor_size) are merged into the output CSVs.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "image_dir": {
+      "type": "string",
+      "description": "Directory containing the medical images (e.g., MRI, CT)."
+     },
+     "mask_dir": {
+      "type": "string",
+      "description": "Directory containing the segmentation masks. Either flat (multilabel masks) or organ subfolders (binary mask per organ)."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where extracted features and the radiomics_extraction.log will be saved."
+     },
+     "image_types": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Preprocessing filters to apply. Flexible names accepted (e.g., ['log', 'square root', 'lbp']). Available: Original, Wavelet, LoG, Exponential, Gradient, SquareRoot, LBP2D, LBP3D. Default: ['Original', 'Wavelet']."
+     },
+     "feature_classes": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Feature classes to extract (e.g., firstorder, shape, glcm, glrlm, glszm, gldm, ngtdm). Default: all available."
+     },
+     "specific_features": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Specific features to extract. If provided, only these features are extracted."
+     },
+     "mask_labels": {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      },
+      "description": "Specific label values to extract for. Default: all non-zero labels found in masks. Falls back to auto-detection if any specified labels don't exist."
+     },
+     "image_pattern": {
+      "type": "string",
+      "description": "Glob pattern for image files. Default: '*.nii.gz'.",
+      "default": "*.nii.gz"
+     },
+     "mask_pattern": {
+      "type": "string",
+      "description": "Glob pattern for mask files. Default: '*.nii.gz'.",
+      "default": "*.nii.gz"
+     },
+     "normalize": {
+      "type": "boolean",
+      "description": "Normalize image intensity values. Default: true.",
+      "default": true
+     },
+     "bin_width": {
+      "type": "number",
+      "description": "Bin width for discretizing image intensities. Default: 25.",
+      "default": 25.0
+     },
+     "resample": {
+      "type": "boolean",
+      "description": "Resample images to isotropic voxels. Default: true.",
+      "default": true
+     },
+     "pixel_spacing": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "description": "Target pixel spacing for resampling [x, y, z]. Default: [1, 1, 1]."
+     },
+     "force_2d": {
+      "type": "boolean",
+      "description": "Extract features slice by slice (2D) instead of 3D. Default: false.",
+      "default": false
+     },
+     "n_workers": {
+      "type": "integer",
+      "description": "Parallel workers for processing images. Default: 1 (serial).",
+      "default": 1
+     },
+     "targets_csv": {
+      "type": "string",
+      "description": "CSV with ground-truth labels and predictor variables. ALL columns are merged into the output. ID and target columns are auto-detected from common naming patterns (id/subject/patient; target/label/outcome)."
+     },
+     "id_column": {
+      "type": "string",
+      "description": "Name of the ID column in targets_csv. Auto-detected if omitted."
+     },
+     "target_column": {
+      "type": "string",
+      "description": "Name of the target column in targets_csv. Auto-detected if omitted; placed as the 2nd column in the output."
+     },
+     "id_pattern": {
+      "type": "string",
+      "description": "Regex with one capture group to extract subject ID from filenames. Default: filename without extension."
+     }
+    },
+    "required": [
+     "image_dir",
+     "mask_dir",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "pycaret-classification",
+   "name": "pycaret_classification",
+   "description": "Train and evaluate classification models using PyCaret AutoML. Compares models, tunes the top-N, blends them, runs holdout evaluation, and writes plots/interpretations to the output directory. Auto-detects the target column from common names (label, target, outcome, ...) when omitted; fuzzy-matches misspelled targets. Model names accept both PyCaret short codes (rf, et, xgboost) and full names (random forest, extra trees, extreme gradient boosting). Requires pycaret installed. \u26a0 ASYNC: AutoML comparison can run for many minutes to over an hour, so this starts a BACKGROUND job and returns a job_id immediately \u2014 it does NOT block until training finishes. Poll `training_job_status` with that job_id to get progress and the final model path / holdout metrics; treat the run as in-progress until job_status reports 'completed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to training CSV."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory for the trained model, plots, and pycaret_classification.log."
+     },
+     "target_column": {
+      "type": "string",
+      "description": "Target column name. Auto-detected from common names if omitted."
+     },
+     "experiment_name": {
+      "type": "string",
+      "description": "Experiment name. Auto-generated with timestamp if omitted."
+     },
+     "fold": {
+      "type": "integer",
+      "description": "Number of cross-validation folds. Default: 10.",
+      "default": 10
+     },
+     "session_id": {
+      "type": "integer",
+      "description": "Random seed for reproducibility. Random if omitted."
+     },
+     "use_gpu": {
+      "type": "boolean",
+      "description": "Use GPU for training (if available). Default: false.",
+      "default": false
+     },
+     "fix_imbalance": {
+      "type": "boolean",
+      "description": "Fix class imbalance via SMOTE. Default: true.",
+      "default": true
+     },
+     "data_split_stratify": {
+      "type": "boolean",
+      "description": "Stratify the train/holdout split by target. Default: true.",
+      "default": true
+     },
+     "data_split_shuffle": {
+      "type": "boolean",
+      "description": "Shuffle data before splitting. Default: true.",
+      "default": true
+     },
+     "preprocess": {
+      "type": "boolean",
+      "description": "Apply PyCaret preprocessing pipeline. Default: true.",
+      "default": true
+     },
+     "ignore_features": {
+      "type": "string",
+      "description": "Comma-separated columns to ignore during training (e.g. 'patient_id,scan_date')."
+     },
+     "numeric_features": {
+      "type": "string",
+      "description": "Comma-separated numeric feature columns. Auto-inferred if omitted."
+     },
+     "categorical_features": {
+      "type": "string",
+      "description": "Comma-separated categorical feature columns. Auto-inferred if omitted."
+     },
+     "date_features": {
+      "type": "string",
+      "description": "Comma-separated date columns."
+     },
+     "n_select": {
+      "type": "integer",
+      "description": "Top-N models to retain for tuning + blending. Default: 3.",
+      "default": 3
+     },
+     "normalize": {
+      "type": "boolean",
+      "description": "Normalize numeric features. Default: false.",
+      "default": false
+     },
+     "transformation": {
+      "type": "boolean",
+      "description": "Apply Yeo-Johnson transformation to numeric features. Default: false.",
+      "default": false
+     },
+     "pca": {
+      "type": "boolean",
+      "description": "Apply PCA dimensionality reduction. Default: false.",
+      "default": false
+     },
+     "pca_components": {
+      "type": "number",
+      "description": "PCA components: 0-1 for variance ratio, integer >1 for explicit count."
+     },
+     "include_models": {
+      "type": "string",
+      "description": "Comma-separated models to include (codes or full names: 'rf,xgboost' or 'random forest, extreme gradient boosting')."
+     },
+     "exclude_models": {
+      "type": "string",
+      "description": "Comma-separated models to exclude."
+     },
+     "test_data_path": {
+      "type": "string",
+      "description": "Optional independent test/holdout CSV. Same schema as the training CSV."
+     },
+     "ignore_gpu_errors": {
+      "type": "boolean",
+      "description": "Fall back to CPU on GPU errors. Default: true.",
+      "default": true
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "pycaret-classification",
+   "name": "pycaret_classification_inference",
+   "description": "Run inference using a saved PyCaret classification model. Writes a predictions CSV and, if a ground-truth column is present, computes accuracy / precision / recall / F1 / ROC-AUC plus a confusion matrix (supports binary and multiclass). Auto-detects the ground-truth column from common names if omitted.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to inference CSV."
+     },
+     "model_path": {
+      "type": "string",
+      "description": "Path to the saved PyCaret model (without the .pkl suffix \u2014 PyCaret adds it)."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Output directory. Defaults to the input file's directory."
+     },
+     "ground_truth_column": {
+      "type": "string",
+      "description": "Ground-truth column name. Auto-detected if omitted; metrics are skipped if not found."
+     },
+     "prediction_filename": {
+      "type": "string",
+      "description": "Output prediction filename. Default: 'predictions.csv'.",
+      "default": "predictions.csv"
+     },
+     "verbose": {
+      "type": "boolean",
+      "description": "Verbose logging. Default: true.",
+      "default": true
+     }
+    },
+    "required": [
+     "input_path",
+     "model_path"
+    ]
+   }
+  },
+  {
+   "server": "pycaret-classification",
+   "name": "training_job_status",
+   "description": "Check a background training/fine-tuning job started by a training tool (these return a job_id instead of blocking). Reports whether it is still running, tails the training log (epoch/loss/metrics), and \u2014 once complete \u2014 returns the final result (model path, metrics). Poll periodically until job_status is 'completed' or 'failed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned when the training tool was called."
+     },
+     "job_dir": {
+      "type": "string",
+      "description": "Alternative: full path to the job directory."
+     },
+     "tail_lines": {
+      "type": "integer",
+      "description": "Number of training-log lines to return. Default: 60.",
+      "default": 60
+     }
+    }
+   }
+  },
+  {
+   "server": "pycaret-regression",
+   "name": "pycaret_regression",
+   "description": "Train and evaluate regression models using PyCaret AutoML. Compares models, tunes the top-N, blends them, runs holdout evaluation, and writes plots/interpretations to the output directory. Auto-detects the target column from common names (target, value, score, outcome, ...) when omitted; fuzzy-matches misspelled targets. Requires pycaret installed. \u26a0 ASYNC: AutoML comparison can run for many minutes to over an hour, so this starts a BACKGROUND job and returns a job_id immediately \u2014 it does NOT block until training finishes. Poll `training_job_status` with that job_id to get progress and the final model path / holdout metrics; treat the run as in-progress until job_status reports 'completed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to training CSV."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory for the trained model, plots, and pycaret_regression.log."
+     },
+     "target_column": {
+      "type": "string",
+      "description": "Target column name. Auto-detected from common names if omitted."
+     },
+     "experiment_name": {
+      "type": "string",
+      "description": "Experiment name. Auto-generated with timestamp if omitted."
+     },
+     "fold": {
+      "type": "integer",
+      "description": "Number of cross-validation folds. Default: 10.",
+      "default": 10
+     },
+     "session_id": {
+      "type": "integer",
+      "description": "Random seed for reproducibility. Random if omitted."
+     },
+     "use_gpu": {
+      "type": "boolean",
+      "description": "Use GPU for training (if available). Default: false.",
+      "default": false
+     },
+     "data_split_stratify": {
+      "type": "boolean",
+      "description": "Stratify the train/holdout split. Default: false (regression).",
+      "default": false
+     },
+     "data_split_shuffle": {
+      "type": "boolean",
+      "description": "Shuffle data before splitting. Default: true.",
+      "default": true
+     },
+     "preprocess": {
+      "type": "boolean",
+      "description": "Apply PyCaret preprocessing pipeline. Default: true.",
+      "default": true
+     },
+     "ignore_features": {
+      "type": "string",
+      "description": "Comma-separated columns to ignore during training (e.g. 'patient_id,scan_date')."
+     },
+     "numeric_features": {
+      "type": "string",
+      "description": "Comma-separated numeric feature columns. Auto-inferred if omitted."
+     },
+     "categorical_features": {
+      "type": "string",
+      "description": "Comma-separated categorical feature columns. Auto-inferred if omitted."
+     },
+     "date_features": {
+      "type": "string",
+      "description": "Comma-separated date columns."
+     },
+     "n_select": {
+      "type": "integer",
+      "description": "Top-N models to retain for tuning + blending. Default: 3.",
+      "default": 3
+     },
+     "normalize": {
+      "type": "boolean",
+      "description": "Normalize numeric features. Default: true (regression).",
+      "default": true
+     },
+     "transformation": {
+      "type": "boolean",
+      "description": "Apply Yeo-Johnson transformation to numeric features. Default: true (regression).",
+      "default": true
+     },
+     "pca": {
+      "type": "boolean",
+      "description": "Apply PCA dimensionality reduction. Default: false.",
+      "default": false
+     },
+     "pca_components": {
+      "type": "number",
+      "description": "PCA components: 0-1 for variance ratio, integer >1 for explicit count."
+     },
+     "include_models": {
+      "type": "string",
+      "description": "Comma-separated models to include in comparison."
+     },
+     "exclude_models": {
+      "type": "string",
+      "description": "Comma-separated models to exclude from comparison."
+     },
+     "test_data_path": {
+      "type": "string",
+      "description": "Optional independent test/holdout CSV. Same schema as the training CSV."
+     },
+     "ignore_gpu_errors": {
+      "type": "boolean",
+      "description": "Fall back to CPU on GPU errors. Default: true.",
+      "default": true
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "pycaret-regression",
+   "name": "pycaret_regression_inference",
+   "description": "Run inference using a saved PyCaret regression model. Writes a predictions CSV and, if a ground-truth column is present, computes RMSE / MAE / R\u00b2 / explained variance / MAPE plus a residual analysis and prediction-vs-actual comparison.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to inference CSV."
+     },
+     "model_path": {
+      "type": "string",
+      "description": "Path to the saved PyCaret regression model (without the .pkl suffix \u2014 PyCaret adds it)."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Output directory. Defaults to the input file's directory."
+     },
+     "ground_truth_column": {
+      "type": "string",
+      "description": "Ground-truth column name. Metrics skipped if omitted/missing."
+     },
+     "prediction_filename": {
+      "type": "string",
+      "description": "Output prediction filename. Default: 'predictions.csv'.",
+      "default": "predictions.csv"
+     },
+     "verbose": {
+      "type": "boolean",
+      "description": "Verbose logging. Default: true.",
+      "default": true
+     }
+    },
+    "required": [
+     "input_path",
+     "model_path"
+    ]
+   }
+  },
+  {
+   "server": "pycaret-regression",
+   "name": "training_job_status",
+   "description": "Check a background training/fine-tuning job started by a training tool (these return a job_id instead of blocking). Reports whether it is still running, tails the training log (epoch/loss/metrics), and \u2014 once complete \u2014 returns the final result (model path, metrics). Poll periodically until job_status is 'completed' or 'failed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned when the training tool was called."
+     },
+     "job_dir": {
+      "type": "string",
+      "description": "Alternative: full path to the job directory."
+     },
+     "tail_lines": {
+      "type": "integer",
+      "description": "Number of training-log lines to return. Default: 60.",
+      "default": 60
+     }
+    }
+   }
+  },
+  {
+   "server": "totalsegmentator",
+   "name": "totalsegmentator_segment",
+   "description": "Segment anatomical structures in CT or MR images using TotalSegmentator. Supports 171 official structures (organs, bones, vessels, muscles). Tasks ending in '_mr' target MR images; otherwise CT is assumed. `roi_subset` and `roi_subset_robust` accept natural-language organ names (e.g. 'kidneys, liver, lungs') which are auto-mapped to TotalSegmentator's naming convention. Accepts a single NIfTI file, a DICOM folder, or a folder of NIfTI files (batch mode). Statistics are off by default; enable them only when the user explicitly requests volume or intensity measurements.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to input CT/MR NIfTI image, a DICOM folder, or a folder of NIfTI files."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Output directory for segmentation masks."
+     },
+     "output_type": {
+      "type": "string",
+      "enum": [
+       "nifti",
+       "dicom"
+      ],
+      "description": "Save segmentations as NIfTI or DICOM RT Struct (default: nifti)."
+     },
+     "multilabel": {
+      "type": "boolean",
+      "description": "Save one multilabel image for all classes instead of separate binary masks.",
+      "default": false
+     },
+     "nr_threads_resampling": {
+      "type": "integer",
+      "description": "Number of threads for resampling."
+     },
+     "nr_threads_saving": {
+      "type": "integer",
+      "description": "Number of threads for saving segmentations."
+     },
+     "fast": {
+      "type": "boolean",
+      "description": "Run faster lower-resolution model (3mm).",
+      "default": false
+     },
+     "fastest": {
+      "type": "boolean",
+      "description": "Run even faster lower-resolution model (6mm).",
+      "default": false
+     },
+     "nora_tag": {
+      "type": "string",
+      "description": "Tag in nora as mask. Pass nora project id."
+     },
+     "task": {
+      "type": "string",
+      "enum": [
+       "total",
+       "total_mr",
+       "lung_vessels",
+       "body",
+       "body_mr",
+       "vertebrae_mr",
+       "cerebral_bleed",
+       "hip_implant",
+       "pleural_pericard_effusion",
+       "head_glands_cavities",
+       "head_muscles",
+       "headneck_bones_vessels",
+       "headneck_muscles",
+       "liver_vessels",
+       "oculomotor_muscles",
+       "lung_nodules",
+       "kidney_cysts",
+       "breasts",
+       "liver_segments",
+       "liver_segments_mr",
+       "heartchambers_highres",
+       "appendicular_bones",
+       "appendicular_bones_mr",
+       "tissue_types",
+       "tissue_types_mr",
+       "tissue_4_types",
+       "brain_structures",
+       "vertebrae_body",
+       "face",
+       "face_mr",
+       "thigh_shoulder_muscles",
+       "thigh_shoulder_muscles_mr",
+       "coronary_arteries"
+      ],
+      "description": "Which model to use. Tasks ending with '_mr' target MR images. Default: 'total' for CT."
+     },
+     "roi_subset": {
+      "type": "string",
+      "description": "Comma-separated subset of structures to save. Accepts natural language (e.g. 'kidneys, liver, lungs')."
+     },
+     "roi_subset_robust": {
+      "type": "string",
+      "description": "Like roi_subset but uses a slower, more robust model. Accepts natural language."
+     },
+     "statistics": {
+      "type": "boolean",
+      "description": "Off by default. Set true only when the user explicitly requests volume (mm3) or intensity measurements; do not enable for segmentation-only requests. Writes statistics.json.",
+      "default": false
+     },
+     "stats_include_incomplete": {
+      "type": "boolean",
+      "description": "Only applies when statistics=true. By default, masks within three voxels of any boundary on the statistics grid are excluded and receive zero volume/intensity, even if masks are nonempty. Set true to measure the visible portion of incomplete organs; these are not whole-organ measurements.",
+      "default": false
+     },
+     "crop_path": {
+      "type": "string",
+      "description": "Custom path to masks used for cropping. Defaults to output_dir."
+     },
+     "body_seg": {
+      "type": "boolean",
+      "description": "Do initial rough body segmentation and crop image to body region.",
+      "default": false
+     },
+     "force_split": {
+      "type": "boolean",
+      "description": "Process image in 3 chunks for less memory consumption.",
+      "default": false
+     },
+     "no_derived_masks": {
+      "type": "boolean",
+      "description": "Do not create derived masks (e.g. skin from body mask).",
+      "default": false
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "gpu",
+       "cpu",
+       "mps"
+      ],
+      "description": "Device to use for inference."
+     },
+     "quiet": {
+      "type": "boolean",
+      "description": "Suppress console output.",
+      "default": false
+     },
+     "verbose": {
+      "type": "boolean",
+      "description": "Verbose output.",
+      "default": false
+     },
+     "license_number": {
+      "type": "string",
+      "description": "License number for TotalSegmentator (for non-public tasks)."
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_prepare_dataset",
+   "description": "Build an nnU-Net v2 dataset from raw image and mask folders. Auto-detects label classes (scans masks for unique non-zero values) and channel layout (per-case subdirs / flat with modality suffix / single-file / already-formatted). Writes the Dataset{ID}_{Name}/{imagesTr,labelsTr,imagesTs}/ tree, calls the official generate_dataset_json helper, and registers a friendly model_name in <root>/models.json so later training and inference can be addressed by name. Symlinks raw files by default; pass copy=true to materialize.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "images_dir": {
+      "type": "string",
+      "description": "Folder containing the training images. Layout is auto-detected."
+     },
+     "labels_dir": {
+      "type": "string",
+      "description": "Folder containing segmentation masks named `{case}.{ext}`. The set of cases here defines the dataset."
+     },
+     "dataset_name": {
+      "type": "string",
+      "description": "Short slug-friendly name (e.g. 'LiverTumor'). Used in the on-disk Dataset{ID}_{Name} folder name and as the default model_name."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "model_name": {
+      "type": "string",
+      "description": "Friendly name to register in models.json (e.g. 'liver_seg_v1'). Defaults to dataset_name. Used by nnunet_train and nnunet_predict instead of the numeric dataset_id."
+     },
+     "images_test_dir": {
+      "type": "string",
+      "description": "Optional folder of test/holdout images (no labels needed). Auto-staged into imagesTs/."
+     },
+     "channel_names": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Override auto-detected channel names (e.g. ['T1','T2','FLAIR']). Length must match the detected channel count."
+     },
+     "label_names": {
+      "type": "object",
+      "description": "Override auto-detected labels, e.g. {\"liver\":1,\"tumor\":2}. Background is added automatically. Auto-detection is used if omitted.",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "file_ending": {
+      "type": "string",
+      "description": "Override the file extension (default: auto-detected from the labels folder, usually '.nii.gz')."
+     },
+     "copy": {
+      "type": "boolean",
+      "description": "Copy files instead of symlinking. Default: false (symlink for speed/disk).",
+      "default": false
+     },
+     "description": {
+      "type": "string",
+      "description": "Free-text description stored in dataset.json."
+     },
+     "overwrite": {
+      "type": "boolean",
+      "description": "Allow overwriting an existing dataset folder or model_name registry entry. Default: false.",
+      "default": false
+     }
+    },
+    "required": [
+     "images_dir",
+     "labels_dir",
+     "dataset_name"
+    ]
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_preprocess",
+   "description": "Run `nnUNetv2_plan_and_preprocess` on a registered model. Sets the three nnU-Net env vars from `nnunet_root` so the user never has to. Verifies dataset integrity by default.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "model_name": {
+      "type": "string",
+      "description": "Registered model_name (preferred). Either this or dataset_id is required."
+     },
+     "dataset_id": {
+      "type": "integer",
+      "description": "Numeric dataset ID (alternative to model_name)."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "configuration": {
+      "type": "string",
+      "enum": [
+       "2d",
+       "3d_fullres",
+       "3d_lowres",
+       "3d_cascade_fullres"
+      ],
+      "description": "Limit preprocessing to one configuration. Default: all."
+     },
+     "verify_dataset_integrity": {
+      "type": "boolean",
+      "description": "Verify dataset integrity. Default: true.",
+      "default": true
+     }
+    }
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_train",
+   "description": "Train a registered model. Accepts an arbitrary epoch count: uses one of nnU-Net's built-in trainer variants (nnUNetTrainer_{1,5,10,20,50,100,250,500,750,2000,4000,8000}epochs) when possible; otherwise synthesizes a one-line subclass into <root>/custom_trainers/ and points nnU-Net at it via the nnUNet_extTrainer env var (no source-tree patching). Runs in the background via Popen + start_new_session, so the training process survives MCP restarts. Returns a job_id immediately; poll `nnunet_job_status` for progress.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "model_name": {
+      "type": "string",
+      "description": "Registered model_name (preferred)."
+     },
+     "dataset_id": {
+      "type": "integer",
+      "description": "Numeric dataset ID (alternative to model_name)."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "epochs": {
+      "type": "integer",
+      "description": "Training epochs. Default: 50. Production runs typically want >=250.",
+      "default": 50
+     },
+     "configuration": {
+      "type": "string",
+      "enum": [
+       "2d",
+       "3d_fullres",
+       "3d_lowres",
+       "3d_cascade_fullres"
+      ],
+      "description": "nnU-Net configuration. Default: 3d_fullres.",
+      "default": "3d_fullres"
+     },
+     "fold": {
+      "type": "string",
+      "description": "Cross-validation fold: '0'..'4' or 'all'. Default: '0'.",
+      "default": "0"
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "cuda",
+       "cpu",
+       "mps"
+      ],
+      "description": "Device. Default: cuda if available."
+     },
+     "num_gpus": {
+      "type": "integer",
+      "description": "Number of GPUs to use."
+     },
+     "continue_training": {
+      "type": "boolean",
+      "description": "Resume from latest checkpoint. Default: false.",
+      "default": false
+     },
+     "val_best": {
+      "type": "boolean",
+      "description": "Use checkpoint_best for final validation. Default: false.",
+      "default": false
+     },
+     "npz": {
+      "type": "boolean",
+      "description": "Save softmax predictions as npz (needed for ensembling).",
+      "default": false
+     },
+     "pretrained_weights": {
+      "type": "string",
+      "description": "Path to a .pth checkpoint to initialize from."
+     },
+     "plans_identifier": {
+      "type": "string",
+      "description": "Custom plans identifier. Default: nnUNetPlans."
+     }
+    }
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_predict",
+   "description": "Run inference using a trained model. Accepts model_name (preferred \u2014 looks up dataset_id, configuration, trainer, channel_names from the registry) or an explicit dataset_id. Auto-stages input filenames into nnU-Net's `{case}_{XXXX}.ext` format if needed (handles flat single-file dirs and per-case subdirs).",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_dir": {
+      "type": "string",
+      "description": "Folder of images to segment."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Folder where segmentation masks will be written."
+     },
+     "model_name": {
+      "type": "string",
+      "description": "Registered model_name (preferred)."
+     },
+     "dataset_id": {
+      "type": "integer",
+      "description": "Numeric dataset ID (alternative to model_name)."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "configuration": {
+      "type": "string",
+      "enum": [
+       "2d",
+       "3d_fullres",
+       "3d_lowres",
+       "3d_cascade_fullres"
+      ],
+      "description": "Override registry value."
+     },
+     "folds": {
+      "type": "string",
+      "description": "Comma-separated fold list, or 'all'. Default: registry-derived (last trained fold)."
+     },
+     "trainer": {
+      "type": "string",
+      "description": "Override registry trainer."
+     },
+     "plans": {
+      "type": "string",
+      "description": "Plans identifier. Default: nnUNetPlans (from registry)."
+     },
+     "checkpoint": {
+      "type": "string",
+      "description": "Checkpoint filename. Default: checkpoint_final.pth."
+     },
+     "disable_tta": {
+      "type": "boolean",
+      "description": "Disable test-time augmentation (faster, less accurate). Default: false.",
+      "default": false
+     },
+     "save_probabilities": {
+      "type": "boolean",
+      "description": "Save softmax outputs (needed for ensembling). Default: false.",
+      "default": false
+     },
+     "step_size": {
+      "type": "number",
+      "description": "Sliding-window step size in (0,1]. Default: 0.5.",
+      "default": 0.5
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "cuda",
+       "cpu",
+       "mps"
+      ],
+      "description": "Inference device."
+     },
+     "num_processes_preprocessing": {
+      "type": "integer",
+      "description": "Workers for preprocessing."
+     },
+     "num_processes_segmentation": {
+      "type": "integer",
+      "description": "Workers for segmentation export."
+     },
+     "verbose": {
+      "type": "boolean",
+      "description": "Verbose output.",
+      "default": false
+     }
+    },
+    "required": [
+     "input_dir",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_job_status",
+   "description": "Read a training job's metadata and tail its log. Detects whether the process is still alive, marks it completed if the checkpoint_final.pth appeared, parses last reported epoch / dice / losses from the log.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned by nnunet_train."
+     },
+     "job_dir": {
+      "type": "string",
+      "description": "Alternative: full path to the job directory."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "tail_lines": {
+      "type": "integer",
+      "description": "Number of log lines to return. Default: 50.",
+      "default": 50
+     }
+    }
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_register_model",
+   "description": "Import an ALREADY-TRAINED nnU-Net v2 model (downloaded, or trained elsewhere) so it can be used by nnunet_predict via a friendly model_name \u2014 no manual editing of models.json or the workspace. Point model_path at the model's Dataset{ID}_{Name} results folder (or its parent, or a specific {trainer}__{plans}__{config} subfolder). Auto-detects dataset id/name, configuration(s), trained folds, and reads dataset.json for labels/channels; copies (or symlinks) the model into the workspace's nnUNet_results and writes the registry entry. Use this before nnunet_predict whenever the model isn't one you trained here with nnunet_train.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "model_path": {
+      "type": "string",
+      "description": "Path to the trained model: the Dataset{ID}_{Name} folder, its parent directory, or a {trainer}__{plans}__{configuration} subfolder."
+     },
+     "model_name": {
+      "type": "string",
+      "description": "Friendly name to register (used later by nnunet_predict). Defaults to the dataset name."
+     },
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     },
+     "configuration": {
+      "type": "string",
+      "enum": [
+       "2d",
+       "3d_fullres",
+       "3d_lowres",
+       "3d_cascade_fullres"
+      ],
+      "description": "Which configuration to register if the model contains more than one. Defaults to the only one present, else prefers 3d_fullres."
+     },
+     "copy": {
+      "type": "boolean",
+      "description": "Copy the model into the workspace (default true). Pass false to symlink instead (falls back to copy if symlinks aren't permitted, e.g. on Windows without admin).",
+      "default": true
+     },
+     "overwrite": {
+      "type": "boolean",
+      "description": "Replace an existing registry entry / workspace folder of the same name. Default false.",
+      "default": false
+     }
+    },
+    "required": [
+     "model_path"
+    ]
+   }
+  },
+  {
+   "server": "nnunet",
+   "name": "nnunet_list_models",
+   "description": "List every model registered in <nnunet_root>/models.json. Each entry includes dataset_id, configuration, trainer, channel_names, labels, num_training, num_test, folds_trained, and creation timestamp.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "nnunet_root": {
+      "type": "string",
+      "description": "nnU-Net workspace root. The toolkit owns this directory and creates nnUNet_raw/preprocessed/results/custom_trainers/jobs subdirs inside it. If omitted, falls back to the RECO_NNUNET_ROOT env var (set by Settings) and finally to ~/.reco/nnunet."
+     }
+    }
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_resnet_training",
+   "description": "This tool trains a ResNet model using PyTorch for medical image classification.\n    It can train from scratch or fine-tune a pre-trained model, and includes validation metrics\n    with configurable data augmentation and comprehensive class imbalance handling for both\n    binary and multiclass classification problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "batch_size": {
+      "description": "Batch size for training",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights as dictionary {class_id: weight} or 'balanced' for automatic calculation",
+      "type": "object"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "data_dir": {
+      "description": "Directory containing dataset with training and validation folders",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric for model selection: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss (class weighting factor)",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss (focusing parameter)",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy for handling class imbalance: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "model_type": {
+      "description": "ResNet model type: resnet18, resnet34, resnet50, resnet101, or resnet152",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling: 'auto', 'minority', 'majority', 'not_minority', 'not_majority', or dict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "data_dir",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_resnet_inference",
+   "description": "This tool uses a trained PyTorch ResNet model to perform inference on new images.\n    It can also calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "case_column": {
+      "description": "Name of the column in ground truth file that contains case/file identifiers",
+      "type": "string"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "file_extension": {
+      "description": "File extension to add to case IDs if they don't already have one",
+      "type": "string"
+     },
+     "ground_truth_file": {
+      "description": "CSV file with image filenames and ground truth labels for evaluation (optional)",
+      "type": "string"
+     },
+     "image_dir": {
+      "description": "Directory containing images for inference",
+      "type": "string"
+     },
+     "label_column": {
+      "description": "Name of the column in ground truth file that contains the labels",
+      "type": "string"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "model_type": {
+      "description": "ResNet model type",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     }
+    },
+    "required": [
+     "image_dir",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_vgg16_training",
+   "description": "This tool trains a VGG16 model using PyTorch for medical image classification.\n    It can train from scratch or fine-tune a pre-trained model, and includes validation metrics\n    with configurable data augmentation and comprehensive class imbalance handling for both\n    binary and multiclass classification problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "batch_size": {
+      "description": "Batch size for training",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights as dictionary {class_id: weight} or 'balanced' for automatic calculation",
+      "type": "object"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "data_dir": {
+      "description": "Directory containing dataset with training and validation folders",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric for model selection: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss (class weighting factor)",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss (focusing parameter)",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy for handling class imbalance: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling: 'auto', 'minority', 'majority', 'not_minority', 'not_majority', or dict",
+      "type": "string"
+     },
+     "use_batch_norm": {
+      "description": "Whether to use VGG16 with batch normalization (VGG16_BN)",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "data_dir",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_vgg16_inference",
+   "description": "This tool uses a trained PyTorch VGG16 model to perform inference on new images.\n    It can also calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "case_column": {
+      "description": "Name of the column in ground truth file that contains case/file identifiers",
+      "type": "string"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "file_extension": {
+      "description": "File extension to add to case IDs if they don't already have one",
+      "type": "string"
+     },
+     "ground_truth_file": {
+      "description": "CSV file with image filenames and ground truth labels for evaluation (optional)",
+      "type": "string"
+     },
+     "image_dir": {
+      "description": "Directory containing images for inference",
+      "type": "string"
+     },
+     "label_column": {
+      "description": "Name of the column in ground truth file that contains the labels",
+      "type": "string"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     },
+     "use_batch_norm": {
+      "description": "Whether the model uses batch normalization (VGG16_BN)",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "image_dir",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_inception_v3_training",
+   "description": "This tool trains an Inception V3 model using PyTorch for medical image classification.\n    It can train from scratch or fine-tune a pre-trained model, and includes validation metrics\n    with configurable data augmentation and comprehensive class imbalance handling for both\n    binary and multiclass classification problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "aux_logits": {
+      "description": "Whether to use auxiliary logits during training (Inception specific)",
+      "type": "boolean"
+     },
+     "batch_size": {
+      "description": "Batch size for training",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights as dictionary {class_id: weight} or 'balanced' for automatic calculation",
+      "type": "object"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "data_dir": {
+      "description": "Directory containing dataset with training and validation folders",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric for model selection: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss (class weighting factor)",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss (focusing parameter)",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy for handling class imbalance: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling: 'auto', 'minority', 'majority', 'not_minority', 'not_majority', or dict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "data_dir",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_inception_v3_inference",
+   "description": "This tool uses a trained PyTorch Inception V3 model to perform inference on new images.\n    It can also calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "aux_logits": {
+      "description": "Whether the model was trained with auxiliary logits (Inception specific)",
+      "type": "boolean"
+     },
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "case_column": {
+      "description": "Name of the column in ground truth file that contains case/file identifiers",
+      "type": "string"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "file_extension": {
+      "description": "File extension to add to case IDs if they don't already have one",
+      "type": "string"
+     },
+     "ground_truth_file": {
+      "description": "CSV file with image filenames and ground truth labels for evaluation (optional)",
+      "type": "string"
+     },
+     "image_dir": {
+      "description": "Directory containing images for inference",
+      "type": "string"
+     },
+     "label_column": {
+      "description": "Name of the column in ground truth file that contains the labels",
+      "type": "string"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     }
+    },
+    "required": [
+     "image_dir",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_efficientnetv2_training",
+   "description": "This tool trains an EfficientNetV2 model using PyTorch for medical image classification.\n    It can train from scratch or fine-tune a pre-trained model, and includes validation metrics.\n    Supports EfficientNetV2-S, EfficientNetV2-M, and EfficientNetV2-L variants with configurable augmentation.\n    Includes comprehensive class imbalance handling for both binary and multiclass problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "batch_size": {
+      "description": "Batch size for training",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights as dictionary {class_id: weight} or 'balanced' for automatic calculation",
+      "type": "object"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "custom_image_size": {
+      "description": "Custom image size to use (applies to both width and height)",
+      "type": "integer"
+     },
+     "data_dir": {
+      "description": "Directory containing dataset with training and validation folders",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric for model selection: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss (class weighting factor)",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss (focusing parameter)",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy for handling class imbalance: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "model_variant": {
+      "description": "EfficientNetV2 variant: efficientnet_v2_s, efficientnet_v2_m, or efficientnet_v2_l",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling: 'auto', 'minority', 'majority', 'not_minority', 'not_majority', or dict",
+      "type": "string"
+     },
+     "use_custom_image_size": {
+      "description": "Whether to use a custom image size instead of the default for the variant",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "data_dir",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_efficientnetv2_inference",
+   "description": "This tool uses a trained PyTorch EfficientNetV2 model to perform inference on new images.\n    It can also calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "case_column": {
+      "description": "Name of the column in ground truth file that contains case/file identifiers",
+      "type": "string"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "custom_image_size": {
+      "description": "Custom image size to use",
+      "type": "integer"
+     },
+     "file_extension": {
+      "description": "File extension to add to case IDs if they don't already have one",
+      "type": "string"
+     },
+     "ground_truth_file": {
+      "description": "CSV file with image filenames and ground truth labels for evaluation (optional)",
+      "type": "string"
+     },
+     "image_dir": {
+      "description": "Directory containing images for inference",
+      "type": "string"
+     },
+     "label_column": {
+      "description": "Name of the column in ground truth file that contains the labels",
+      "type": "string"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "model_variant": {
+      "description": "EfficientNetV2 variant",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     },
+     "use_custom_image_size": {
+      "description": "Whether to use a custom image size",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "image_dir",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "pytorch_model_fine_tuning",
+   "description": "This tool fine-tunes an already trained PyTorch model with new data. It supports various\n    fine-tuning strategies including layer freezing, differential learning rates, and\n    catastrophic forgetting prevention techniques. Includes comprehensive class imbalance\n    handling for both binary and multiclass classification problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "add_new_classes": {
+      "description": "Whether new data contains additional classes",
+      "type": "boolean"
+     },
+     "augmentation_level": {
+      "description": "Data augmentation level: 'none', 'basic', 'moderate', 'heavy'",
+      "type": "string"
+     },
+     "backbone_learning_rate": {
+      "description": "Lower learning rate for frozen/backbone layers (differential LR)",
+      "type": "number"
+     },
+     "batch_size": {
+      "description": "Batch size for fine-tuning",
+      "type": "integer"
+     },
+     "catastrophic_forgetting_weight": {
+      "description": "Weight for catastrophic forgetting prevention loss (0.0-1.0)",
+      "type": "number"
+     },
+     "class_weights": {
+      "description": "Custom class weights as dictionary {class_id: weight} or 'balanced' for automatic calculation",
+      "type": "object"
+     },
+     "config_path": {
+      "description": "Path to original model configuration JSON file",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric for model selection: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "fine_tune_learning_rate": {
+      "description": "Learning rate for fine-tuning (default: 1e-5)",
+      "type": "number"
+     },
+     "fine_tuning_strategy": {
+      "description": "Strategy: 'full', 'partial', 'head_only', 'gradual_unfreezing'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss (class weighting factor)",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss (focusing parameter)",
+      "type": "number"
+     },
+     "freeze_layers": {
+      "description": "Number of layers to freeze from the beginning (for partial strategy)",
+      "type": "integer"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy for handling class imbalance: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "new_data_dir": {
+      "description": "Directory containing new training and validation data",
+      "type": "string"
+     },
+     "new_num_classes": {
+      "description": "Total number of classes after adding new ones",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of fine-tuning epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where fine-tuned model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Early stopping patience",
+      "type": "integer"
+     },
+     "preserve_original_performance": {
+      "description": "Whether to monitor and preserve performance on original classes during fine-tuning",
+      "type": "boolean"
+     },
+     "pretrained_model_path": {
+      "description": "Path to the already trained model file (.pt format)",
+      "type": "string"
+     },
+     "reset_optimizer": {
+      "description": "Whether to reset optimizer state (vs continuing from checkpoint)",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling: 'auto', 'minority', 'majority', 'not_minority', 'not_majority', or dict",
+      "type": "string"
+     },
+     "use_cosine_annealing": {
+      "description": "Whether to use cosine annealing LR scheduler",
+      "type": "boolean"
+     },
+     "warmup_epochs": {
+      "description": "Number of warmup epochs for gradual unfreezing",
+      "type": "integer"
+     },
+     "weight_decay": {
+      "description": "Weight decay for regularization",
+      "type": "number"
+     }
+    },
+    "required": [
+     "pretrained_model_path",
+     "config_path",
+     "new_data_dir",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-2d",
+   "name": "training_job_status",
+   "description": "Check a background training/fine-tuning job started by a training tool (these return a job_id instead of blocking). Reports whether it is still running, tails the training log (epoch/loss/metrics), and \u2014 once complete \u2014 returns the final result (model path, metrics). Poll periodically until job_status is 'completed' or 'failed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned when the training tool was called."
+     },
+     "job_dir": {
+      "type": "string",
+      "description": "Alternative: full path to the job directory."
+     },
+     "tail_lines": {
+      "type": "integer",
+      "description": "Number of training-log lines to return. Default: 60.",
+      "default": 60
+     }
+    }
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "pytorch_3dresnet_training",
+   "description": "This tool trains a 3D ResNet model using PyTorch and MONAI for 3D medical image classification.\n    Designed for MedMNIST datasets (28x28x28 volumes) but supports any 3D medical imaging data.\n    Supports ResNet10, ResNet18, ResNet34, and ResNet50 variants with configurable 3D augmentation.\n    Includes comprehensive class imbalance handling for both binary and multiclass problems.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "batch_size": {
+      "description": "Batch size for training (recommend 4-8 for 3D data)",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights or 'balanced'",
+      "type": "object"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "data_path": {
+      "description": "Path to .npz file containing MedMNIST data (or directory with train.npz, val.npz, test.npz)",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "learning_rate": {
+      "description": "Initial learning rate",
+      "type": "number"
+     },
+     "model_variant": {
+      "description": "3D ResNet variant: resnet10, resnet18, resnet34, or resnet50",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights (MedicalNet if available)",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling",
+      "type": "string"
+     },
+     "validation_split": {
+      "description": "Fraction of training data to use for validation if no val set provided",
+      "type": "number"
+     }
+    },
+    "required": [
+     "data_path",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "pytorch_3dresnet_inference",
+   "description": "This tool uses a trained PyTorch 3D ResNet model to perform inference on 3D medical images.\n    Supports MedMNIST format and can calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "data_key_images": {
+      "description": "Key for images in .npz file (default: 'images' or 'test_images')",
+      "type": "string"
+     },
+     "data_key_labels": {
+      "description": "Key for labels in .npz file (default: 'labels' or 'test_labels')",
+      "type": "string"
+     },
+     "data_path": {
+      "description": "Path to .npz file containing images (and optionally labels)",
+      "type": "string"
+     },
+     "has_labels": {
+      "description": "Whether the data file contains ground truth labels",
+      "type": "boolean"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "model_variant": {
+      "description": "3D ResNet variant: resnet10, resnet18, resnet34, or resnet50",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     },
+     "save_predictions_per_sample": {
+      "description": "Whether to save detailed predictions for each sample",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "data_path",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "pytorch_3ddensenet_training",
+   "description": "This tool trains a 3D DenseNet model using PyTorch and MONAI for 3D medical image classification.\n    Supports both standard DenseNet architectures and custom configurations optimized for small volumes.\n    Supports DenseNet121, DenseNet169, DenseNet201, and DenseNet264 variants with configurable 3D augmentation.\n    Includes comprehensive class imbalance handling for both binary and multiclass problems.\n    Use config_type='custom' for small 28x28x28 volumes or 'standard' for full-size medical images.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "augmentation_level": {
+      "description": "Level of augmentation: 'none', 'basic', 'moderate', 'heavy', or 'custom'",
+      "type": "string"
+     },
+     "batch_size": {
+      "description": "Batch size for training (recommend 4-8 for 3D data)",
+      "type": "integer"
+     },
+     "class_weights": {
+      "description": "Custom class weights or 'balanced'",
+      "type": "object"
+     },
+     "config_type": {
+      "description": "Configuration type: 'custom' (optimized for small 28x28x28 volumes) or 'standard' (full DenseNet architecture)",
+      "type": "string"
+     },
+     "custom_augmentations": {
+      "description": "Custom augmentation settings when augmentation_level is 'custom'",
+      "type": "object"
+     },
+     "data_path": {
+      "description": "Path to .npz file containing MedMNIST data (or directory with train.npz, val.npz, test.npz)",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss",
+      "type": "number"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling techniques",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "learning_rate": {
+      "description": "Initial learning rate",
+      "type": "number"
+     },
+     "model_variant": {
+      "description": "3D DenseNet variant: densenet121, densenet169, densenet201, or densenet264",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes for classification",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of training epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where the trained model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Number of epochs to wait before early stopping",
+      "type": "integer"
+     },
+     "pretrained": {
+      "description": "Whether to use pretrained weights (MedicalNet if available)",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling",
+      "type": "string"
+     },
+     "validation_split": {
+      "description": "Fraction of training data to use for validation if no val set provided",
+      "type": "number"
+     }
+    },
+    "required": [
+     "data_path",
+     "output_dir",
+     "num_classes"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "pytorch_3ddensenet_inference",
+   "description": "This tool uses a trained PyTorch 3D DenseNet model to perform inference on 3D medical images.\n    Supports both standard and custom DenseNet configurations (auto-detected from model config).\n    Supports MedMNIST format and can calculate performance metrics if ground truth labels are provided.",
+   "input_schema": {
+    "properties": {
+     "batch_size": {
+      "description": "Batch size for inference",
+      "type": "integer"
+     },
+     "class_names": {
+      "description": "List of class names corresponding to model output indices (optional)",
+      "type": "array"
+     },
+     "config_path": {
+      "description": "Path to model configuration JSON file (optional)",
+      "type": "string"
+     },
+     "config_type": {
+      "description": "Configuration type: 'custom' or 'standard' (auto-detected from config file if available)",
+      "type": "string"
+     },
+     "data_key_images": {
+      "description": "Key for images in .npz file (default: 'images' or 'test_images')",
+      "type": "string"
+     },
+     "data_key_labels": {
+      "description": "Key for labels in .npz file (default: 'labels' or 'test_labels')",
+      "type": "string"
+     },
+     "data_path": {
+      "description": "Path to .npz file containing images (and optionally labels)",
+      "type": "string"
+     },
+     "has_labels": {
+      "description": "Whether the data file contains ground truth labels",
+      "type": "boolean"
+     },
+     "model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "model_variant": {
+      "description": "3D DenseNet variant: densenet121, densenet169, densenet201, or densenet264",
+      "type": "string"
+     },
+     "num_classes": {
+      "description": "Number of classes (needed if not provided in config file)",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where prediction results will be saved",
+      "type": "string"
+     },
+     "save_predictions_per_sample": {
+      "description": "Whether to save detailed predictions for each sample",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "data_path",
+     "model_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "pytorch_3d_model_fine_tuning",
+   "description": "This tool fine-tunes pre-trained 3D ResNet or DenseNet models with new data.\n    Supports layer freezing, differential learning rates, class imbalance handling,\n    and catastrophic forgetting prevention for medical imaging applications.\n\n\u26a0 ASYNC: This starts a background training job and returns a job_id immediately \u2014 it does NOT wait for training to finish. Poll `training_job_status` with that job_id to track progress and get the final metrics / model path. Treat the run as in-progress until job_status reports status 'completed'.",
+   "input_schema": {
+    "properties": {
+     "add_new_classes": {
+      "description": "Whether new data contains additional classes",
+      "type": "boolean"
+     },
+     "augmentation_level": {
+      "description": "Augmentation level: 'none', 'basic', 'moderate', 'heavy'",
+      "type": "string"
+     },
+     "backbone_learning_rate": {
+      "description": "Lower learning rate for frozen/backbone layers",
+      "type": "number"
+     },
+     "batch_size": {
+      "description": "Batch size for fine-tuning",
+      "type": "integer"
+     },
+     "catastrophic_forgetting_weight": {
+      "description": "Weight for catastrophic forgetting prevention loss",
+      "type": "number"
+     },
+     "class_weights": {
+      "description": "Custom class weights or 'balanced'",
+      "type": "object"
+     },
+     "config_path": {
+      "description": "Path to original model configuration JSON file",
+      "type": "string"
+     },
+     "early_stopping": {
+      "description": "Whether to use early stopping",
+      "type": "boolean"
+     },
+     "evaluation_metric": {
+      "description": "Primary metric: 'accuracy', 'f1_macro', 'f1_weighted', 'balanced_accuracy', 'auc_roc'",
+      "type": "string"
+     },
+     "fine_tune_learning_rate": {
+      "description": "Learning rate for fine-tuning",
+      "type": "number"
+     },
+     "fine_tuning_strategy": {
+      "description": "Strategy: 'full', 'partial', 'head_only', 'gradual_unfreezing'",
+      "type": "string"
+     },
+     "focal_loss_alpha": {
+      "description": "Alpha parameter for focal loss",
+      "type": "number"
+     },
+     "focal_loss_gamma": {
+      "description": "Gamma parameter for focal loss",
+      "type": "number"
+     },
+     "freeze_layers": {
+      "description": "Number of layer groups to freeze from the beginning",
+      "type": "integer"
+     },
+     "handle_class_imbalance": {
+      "description": "Whether to apply class imbalance handling",
+      "type": "boolean"
+     },
+     "imbalance_strategy": {
+      "description": "Strategy: 'weighted_loss', 'focal_loss', 'oversampling', 'undersampling'",
+      "type": "string"
+     },
+     "new_data_path": {
+      "description": "Path to .npz file containing new training data",
+      "type": "string"
+     },
+     "new_num_classes": {
+      "description": "Total number of classes after adding new ones",
+      "type": "integer"
+     },
+     "num_epochs": {
+      "description": "Number of fine-tuning epochs",
+      "type": "integer"
+     },
+     "output_dir": {
+      "description": "Directory where fine-tuned model and results will be saved",
+      "type": "string"
+     },
+     "patience": {
+      "description": "Early stopping patience",
+      "type": "integer"
+     },
+     "preserve_original_performance": {
+      "description": "Whether to prevent catastrophic forgetting",
+      "type": "boolean"
+     },
+     "pretrained_model_path": {
+      "description": "Path to the trained model file (.pt format)",
+      "type": "string"
+     },
+     "reset_optimizer": {
+      "description": "Whether to reset optimizer state",
+      "type": "boolean"
+     },
+     "sampling_strategy": {
+      "description": "Sampling strategy for over/undersampling",
+      "type": "string"
+     },
+     "use_cosine_annealing": {
+      "description": "Whether to use cosine annealing LR scheduler",
+      "type": "boolean"
+     },
+     "validation_split": {
+      "description": "Fraction of data to use for validation if no val set provided",
+      "type": "number"
+     },
+     "warmup_epochs": {
+      "description": "Number of warmup epochs for gradual unfreezing",
+      "type": "integer"
+     },
+     "weight_decay": {
+      "description": "Weight decay for regularization",
+      "type": "number"
+     }
+    },
+    "required": [
+     "pretrained_model_path",
+     "config_path",
+     "new_data_path",
+     "output_dir"
+    ],
+    "type": "object"
+   }
+  },
+  {
+   "server": "medimg-classification-3d",
+   "name": "training_job_status",
+   "description": "Check a background training/fine-tuning job started by a training tool (these return a job_id instead of blocking). Reports whether it is still running, tails the training log (epoch/loss/metrics), and \u2014 once complete \u2014 returns the final result (model path, metrics). Poll periodically until job_status is 'completed' or 'failed'.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned when the training tool was called."
+     },
+     "job_dir": {
+      "type": "string",
+      "description": "Alternative: full path to the job directory."
+     },
+     "tail_lines": {
+      "type": "integer",
+      "description": "Number of training-log lines to return. Default: 60.",
+      "default": 60
+     }
+    }
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_image_embedding",
+   "description": "Extract a 2048-dim Merlin image embedding per CT scan, suitable as a feature vector for your own downstream models (provides functionality similar to Google CT Foundation). Long-running: returns a job_id; poll merlin_check_job. Saves image_embeddings.npy and .csv to output_dir.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to an abdominal CT as a NIfTI file (.nii / .nii.gz), OR a folder of NIfTI files for batch processing. Volumes are auto-resampled to 1.5x1.5x3mm, HU-windowed to [-1000,1000] and cropped/padded to 224x224x160 by Merlin's preprocessing."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results (JSON / CSV / NPY) are written. Created if missing."
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "gpu",
+       "cpu"
+      ],
+      "description": "Compute device: 'auto' (GPU if available, else CPU), 'gpu', or 'cpu'.",
+      "default": "auto"
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_phenotype_classification",
+   "description": "Predict Merlin's 1692 EHR phenotype scores per CT and return the top-K phenotypes mapped to human-readable phecodes/descriptions. Long-running: returns a job_id; poll merlin_check_job. Writes phenotype_predictions.json to output_dir.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to an abdominal CT as a NIfTI file (.nii / .nii.gz), OR a folder of NIfTI files for batch processing. Volumes are auto-resampled to 1.5x1.5x3mm, HU-windowed to [-1000,1000] and cropped/padded to 224x224x160 by Merlin's preprocessing."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results (JSON / CSV / NPY) are written. Created if missing."
+     },
+     "top_k": {
+      "type": "integer",
+      "description": "Number of top-ranked phenotypes to return per scan.",
+      "default": 10
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "gpu",
+       "cpu"
+      ],
+      "description": "Compute device: 'auto' (GPU if available, else CPU), 'gpu', or 'cpu'.",
+      "default": "auto"
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_five_year_disease_prediction",
+   "description": "Predict five-year risk for six diseases (Cardiovascular Disease, Ischemic Heart Disease, Hypertension, Diabetes Mellitus, Chronic Kidney Disease, Osteoporosis) from an abdominal CT. Long-running: returns a job_id; poll merlin_check_job. Writes five_year_disease_predictions.json to output_dir.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to an abdominal CT as a NIfTI file (.nii / .nii.gz), OR a folder of NIfTI files for batch processing. Volumes are auto-resampled to 1.5x1.5x3mm, HU-windowed to [-1000,1000] and cropped/padded to 224x224x160 by Merlin's preprocessing."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results (JSON / CSV / NPY) are written. Created if missing."
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "gpu",
+       "cpu"
+      ],
+      "description": "Compute device: 'auto' (GPU if available, else CPU), 'gpu', or 'cpu'.",
+      "default": "auto"
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_contrastive_embedding",
+   "description": "Compute Merlin's paired 512-dim image and text contrastive embeddings and the image-report cosine similarity for a given CT and a candidate radiology report text. Useful for image-text retrieval / report-matching. Long-running: returns a job_id; poll merlin_check_job. Saves the 512-dim embeddings to output_dir.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to an abdominal CT as a NIfTI file (.nii / .nii.gz), OR a folder of NIfTI files for batch processing. Volumes are auto-resampled to 1.5x1.5x3mm, HU-windowed to [-1000,1000] and cropped/padded to 224x224x160 by Merlin's preprocessing."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results (JSON / CSV / NPY) are written. Created if missing."
+     },
+     "report_text": {
+      "type": "string",
+      "description": "Radiology report / free-text description to embed and compare against each CT."
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "gpu",
+       "cpu"
+      ],
+      "description": "Compute device: 'auto' (GPU if available, else CPU), 'gpu', or 'cpu'.",
+      "default": "auto"
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir",
+     "report_text"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_generate_report",
+   "description": "Generate a radiology report for an abdominal CT, organ system by organ system, using Merlin's report-generation model (RadLLaMA-7b decoder, ~26 GB downloaded on first use). Long-running: returns a job_id; poll merlin_check_job. Writes per-scan *_report.txt and radiology_reports.json to output_dir. Strongly prefers a GPU.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input_path": {
+      "type": "string",
+      "description": "Path to an abdominal CT as a NIfTI file (.nii / .nii.gz), OR a folder of NIfTI files for batch processing. Volumes are auto-resampled to 1.5x1.5x3mm, HU-windowed to [-1000,1000] and cropped/padded to 224x224x160 by Merlin's preprocessing."
+     },
+     "output_dir": {
+      "type": "string",
+      "description": "Directory where results (JSON / CSV / NPY) are written. Created if missing."
+     },
+     "organ_systems": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Subset of organ systems to report on (e.g. ['liver','kidneys']). Defaults to all 13 systems Merlin was trained on."
+     },
+     "max_new_tokens": {
+      "type": "integer",
+      "description": "Max tokens to generate per organ system.",
+      "default": 128
+     },
+     "device": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "gpu",
+       "cpu"
+      ],
+      "description": "Compute device: 'auto' (GPU if available, else CPU), 'gpu', or 'cpu'.",
+      "default": "auto"
+     }
+    },
+    "required": [
+     "input_path",
+     "output_dir"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_check_job",
+   "description": "Poll a long-running Merlin job. Returns status (running/done/failed), recent log lines, and the parsed result when done. Set wait_seconds > 0 to block server-side until the job finishes OR the wait elapses (capped 300s) \u2014 cheaper than tight polling. If it returns status='running' after the wait, just call again.",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": "Job ID returned by a previous Merlin tool call."
+     },
+     "wait_seconds": {
+      "type": "integer",
+      "description": "Block server-side up to this many seconds (max 300). 0 = return immediately.",
+      "default": 0
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   }
+  },
+  {
+   "server": "merlin",
+   "name": "merlin_list_jobs",
+   "description": "List all jobs spawned by the Merlin server with their status.",
+   "input_schema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  }
+ ],
+ "errors": {}
+}

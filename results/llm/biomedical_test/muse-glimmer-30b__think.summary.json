@@ -1,0 +1,45 @@
+{
+ "model": "muse-glimmer-30b",
+ "condition": "think",
+ "seed": 20261102,
+ "data": "biomedical_test.jsonl",
+ "settings": "55ff719d25ae70b9",
+ "settings_detail": {
+  "model": "muse-glimmer-30b",
+  "file": "Muse-Glimmer-30B-Q8_0.gguf",
+  "sha256": "f2c087d694ca8242a4a436076df7c041703ab051ac4b72bb1bfe2698299b0e86",
+  "chat_template_file": null,
+  "condition": "think",
+  "template": {
+   "reasoning_strength": "high"
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 64,
+   "min_p": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "b87c385cccf54fa7599f5a77c8efcd3cba4dde76df3adc9b0cf1305ce3b432a7"
+ },
+ "answered": 824,
+ "rows": 824,
+ "n": 824,
+ "complete": 626,
+ "oos": 127,
+ "ask_rows": 71,
+ "tool_right": 574,
+ "oos_declined": 85,
+ "correct": 550,
+ "all_correct": 635,
+ "strict": 469,
+ "extras": 98,
+ "ask_no_call": 46,
+ "kind_call": 692,
+ "kind_none": 132,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 16.353322301746708,
+ "completion_tokens": 585.4259708737864
+}

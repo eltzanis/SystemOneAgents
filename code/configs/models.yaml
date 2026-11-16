@@ -1,0 +1,73 @@
+# The six decision models of the study and how llama-server ran them (one NVIDIA RTX PRO 5000 Blackwell, 48 GB; every
+# model entirely in VRAM, one at a time, one slot). `s1a serve <name>` starts a model's server; `--model <name>` selects
+# it elsewhere. The name of each entry is the backend's name: it is part of every answer-store key, so the recorded
+# answers in results/system1/answers/<name>.jsonl replay only under these names.
+#
+#   kind                 how the model is read (s1agent.backends)
+#   model_dir, gguf      the GGUF file the server loads
+#   hf_dir               (pplx) the Hugging Face folder with tokenizer, chat template, decision_config.json,
+#                        joint_config.json and readout.safetensors
+#   port                 the server's port on 127.0.0.1
+#   temperature_by_type  (decider) a temperature per question kind, over the one in decider_config.json
+#   option_limit         most options the model takes in one question; longer questions are asked in two rounds
+#                        (s1agent.backends.base.Backend._choice_in_rounds)
+#   server_args          llama-server flags. Models whose readout attends to the whole prompt (pplx, Clef) need the
+#                        prompt in one micro-batch: batch and micro-batch at least the longest question in the model's
+#                        tokens (pplx-decider 5,007 tokens on the study's sets; Clef 6,156)
+#
+# Files (sources in README.md): models/<dir>/<gguf>; llama.cpp release b11929 (CUDA 12.8 build) in third_party/llama.cpp.
+root: ..                     # relative paths below start from the code folder
+llama_server: third_party/llama.cpp/llama-b11929/llama-server
+cuda_libs: third_party/llama.cpp/cudart-llama-b11929-bin-ubuntu-cuda-12.8-x64
+
+models:
+  decider-4b:                                # Qwen3.5-4B base, Q8_0
+    kind: decider-llamacpp
+    model_dir: models/decider-4b             # decider-4b-v3-Q8_0.gguf, tokenizer.json, decider_config.json
+    gguf: decider-4b-v3-Q8_0.gguf
+    port: 8082
+    temperature_by_type: {noul: 2.795}       # decider-4b's calibrated yes/no temperature
+    server_args: [--n-gpu-layers, "999", --ctx-size, "16384", --batch-size, "4096", --ubatch-size, "2048", --parallel, "1"]
+
+  pplx-decider-flash:                        # Perplexity pplx-decider-flash v1.2 (Qwen3.5-4B), official Q8_0 GGUF
+    kind: pplx-llamacpp
+    model_dir: models/pplx-decider-flash-v1.2
+    gguf: decider-flash-v1.2-q8_0.gguf
+    hf_dir: models/pplx-decider-flash-v1.2/hf
+    port: 8083
+    server_args: [--n-gpu-layers, "999", --embeddings, --pooling, none, --ctx-size, "5632", --batch-size, "5632",
+                  --ubatch-size, "5632", --parallel, "1"]
+
+  decider-35b-a3b:                           # Qwen3.5-35B-A3B base (mixture of experts, 3B active), Q4_K_M
+    kind: decider-llamacpp
+    model_dir: models/decider-35b-a3b        # the GGUF, tokenizer.json, decider_config.json
+    gguf: decider-35b-a3b.Q4_K_M.gguf
+    port: 8081
+    concurrency: 1
+    server_args: [--n-gpu-layers, "999", --ctx-size, "16384", --batch-size, "4096", --ubatch-size, "4096", --parallel, "1"]
+
+  openjev:                                   # OpenJev, Q4_K_M; answered by llama-server's /v1/systemone
+    kind: systemone-llamacpp
+    model_dir: models/openjev
+    gguf: OpenJev-Q4_K_M.gguf
+    port: 8088
+    option_limit: 52
+    server_args: [--n-gpu-layers, "999", --ctx-size, "8192", --batch-size, "4096", --ubatch-size, "4096", --parallel, "1"]
+
+  clef:                                      # Cloudflare Clef (Qwen3.5-27B + joint schema head), Q8_0; /v1/systemone
+    kind: systemone-llamacpp
+    model_dir: models/clef
+    gguf: Clef-Q8_0.gguf
+    port: 8092
+    # In the final run the first 751 biomedical requests ran with --batch-size/--ubatch-size 6144, the rest with 8192 (a
+    # technical change after a 6,156-token question exceeded the batch).
+    server_args: [--n-gpu-layers, "999", --ctx-size, "8192", --batch-size, "8192", --ubatch-size, "8192", --parallel, "1"]
+
+  pplx-decider-27b-embed:                    # Perplexity pplx-decider v1.2 (Qwen3.5-27B), converted to GGUF Q8_0 with
+    kind: pplx-llamacpp                      # llama.cpp b11929's converter; the converter does not write
+    model_dir: models/pplx-decider-27b       # qwen35.attention.causal = false, so it is set at load time
+    gguf: pplx-decider-v1.2-Q8_0.gguf
+    hf_dir: models/pplx-27b-hf
+    port: 8098
+    server_args: [--n-gpu-layers, "999", --embeddings, --pooling, none, --ctx-size, "5632", --batch-size, "5632",
+                  --ubatch-size, "5632", --parallel, "1", --override-kv, "qwen35.attention.causal=bool:false"]

@@ -1,0 +1,46 @@
+{
+ "model": "qwen3.5-27b",
+ "condition": "nothink",
+ "seed": 20261102,
+ "data": "imaging_test.jsonl",
+ "settings": "65d063dfa570c403",
+ "settings_detail": {
+  "model": "qwen3.5-27b",
+  "file": "Qwen3.5-27B-Q8_0.gguf",
+  "sha256": "6b0a101b0a86697fe11eabcc1a7db72699a9f3d4b18b6a1ac75ea3fb2c26c450",
+  "chat_template_file": null,
+  "condition": "nothink",
+  "template": {
+   "enable_thinking": false
+  },
+  "sampling": {
+   "temperature": 0.7,
+   "top_p": 0.8,
+   "top_k": 20,
+   "min_p": 0.0,
+   "presence_penalty": 1.5
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "d33abbdea4be9d0b748ad286dfdb6516984e0ed2f02be60918d947979793b5ce"
+ },
+ "answered": 1179,
+ "rows": 1179,
+ "n": 1179,
+ "complete": 896,
+ "oos": 180,
+ "ask_rows": 103,
+ "tool_right": 878,
+ "oos_declined": 142,
+ "correct": 839,
+ "all_correct": 981,
+ "strict": 453,
+ "extras": 1008,
+ "ask_no_call": 69,
+ "kind_call": 960,
+ "kind_none": 219,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 4.660838363449929,
+ "completion_tokens": 165.2637828668363
+}

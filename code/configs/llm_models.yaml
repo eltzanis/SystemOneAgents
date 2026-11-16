@@ -1,0 +1,135 @@
+# The nine LLMs of the baseline. Each runs as a tool-calling agent through llama-server's OpenAI-compatible API with its
+# own chat template (--jinja, the template inside the GGUF), one at a time, entirely on the GPU, one slot (--parallel 1:
+# requests in sequence, the same seed for every request). llama.cpp release b11929 (the build of the System 1 runs).
+#
+# Precision: 8-bit (Q8_0) for every model that fits a 48 GB GPU at 8 bits; the Qwen3.5 backbones use the precision of the
+# System 1 model built on them (decider-4b, pplx-decider-flash, Clef and pplx-decider-27b Q8_0; decider-35b-a3b Q4_K_M);
+# Nemotron 3.5 Bolt 74B (79 GB at Q8_0) uses NVIDIA's own release for local GPUs. Sources in README.md.
+#
+# Conditions: `think` = each vendor's reasoning mode for agentic use with its recommended sampling; `nothink` = reasoning
+# switched off (Muse Glimmer has no off switch: its lowest level, low). Sampling as published by each vendor
+# (generation_config.json or model card), min_p 0 (llama.cpp's default 0.05 is not part of any recipe).
+#
+# The settings that shape a completion (file, sha256, condition, template switches, sampling, seed, max_tokens, and the
+# hash of the function definitions) form the settings key of the answer store (llm_agent.agent.LLMAgent.key).
+#
+# Context: 65,536 tokens. Biomedical catalogue: longest prompt (counted by the server's own template and tokenizer,
+# scripts/measure_context.py) + max_tokens must fit, else the smallest multiple of 8,192 that does (`ctx_by_catalogue`).
+root: ..                     # relative paths below start from the code folder
+llama_server: third_party/llama.cpp/llama-b11929/llama-server
+cuda_libs: third_party/llama.cpp/cudart-llama-b11929-bin-ubuntu-cuda-12.8-x64
+
+defaults:
+  server_args: [--n-gpu-layers, "999", --ctx-size, "65536", --flash-attn, "on", --parallel, "1", --jinja, --metrics]
+  max_tokens: 16384          # generated tokens per completion (reasoning included)
+  seed: 20261102
+  timeout: 3600              # seconds per completion
+
+models:
+  nemotron-bolt-e4b:
+    label: NVIDIA Nemotron 3.5 Bolt E4B
+    params: 8B (4B effective; post-trained Gemma 4 E4B)
+    dir: models/nemotron-bolt-e4b
+    file: NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q8_K_XL.gguf
+    sha256: 6176bd788769bd58042c165d3dc8e8c86a8ca5c90d5de188a364b31dc9560810
+    port: 8201
+    server_args_extra: [--swa-full]          # sliding-window layers: keep the full cache so the tool prefix is reused
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+
+  nemotron-bolt-74b:
+    label: NVIDIA Nemotron 3.5 Bolt 74B-A9B (24GB release)
+    params: 74B total, 9B active (Mamba-2/Transformer hybrid, LatentMoE)
+    dir: models/nemotron-bolt-74b
+    file: NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf
+    sha256: 91d63363e782c8a3d5f4be42816eba8e0d42dd2530bd07a7d0d2dc440599af75
+    port: 8202
+    ctx_by_catalogue: {biomedical_tools.json: 73728}   # longest biomedical prompt 57,039 tokens + 16,384
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 0, min_p: 0.0}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 1.0, top_p: 0.95, top_k: 0, min_p: 0.0}}
+
+  qwen3.8-27b:
+    label: Qwen3.8-27B
+    params: 27B dense (Gated DeltaNet + gated attention hybrid)
+    dir: models/qwen3.8-27b
+    file: Qwen3.8-27B-Q8_0.gguf
+    sha256: aab65c67ef0dad127960efef9247f1832bca105faa1c7a052cc039b223cf86a1
+    port: 8203
+    conditions:                                # reasoning_effort not set: the template's default, xhigh
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 0.0}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+
+  muse-glimmer-30b:
+    label: Meta Muse Glimmer 30B
+    params: 30B dense (28B decoder + 2B perception encoder)
+    dir: models/muse-glimmer-30b
+    file: Muse-Glimmer-30B-Q8_0.gguf
+    sha256: f2c087d694ca8242a4a436076df7c041703ab051ac4b72bb1bfe2698299b0e86
+    port: 8204
+    server_args_extra: [--swa-full]
+    conditions:                                # Meta: "high or xhigh for agentic tasks"; no off level, low is the lowest
+      think:   {template: {reasoning_strength: high}, sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+      nothink: {template: {reasoning_strength: low},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+
+  gemma-4-e4b:
+    label: Google Gemma 4 E4B (it)
+    params: 8B (4B effective)
+    dir: models/gemma-4-e4b
+    file: gemma-4-E4B-it-Q8_0.gguf
+    sha256: 34be82b17b4942d389b9b527170c4b058027abdd32531fda063d3d97dd8ce80a
+    port: 8205
+    server_args_extra: [--swa-full]
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+
+  gemma-4-26b-a4b:
+    label: Google Gemma 4 26B-A4B (it)
+    params: 26B total, 4B active (MoE)
+    dir: models/gemma-4-26b-a4b
+    file: gemma-4-26B-A4B-it-Q8_0.gguf
+    sha256: b5108fd13147d1c866bb595295bc9d56f5fe744d7209f18421031d0cc47009c6
+    port: 8206
+    server_args_extra: [--swa-full]
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, min_p: 0.0}}
+
+  # The backbones of the System 1 decision models: the same base model, used as a generating agent.
+  qwen3.5-4b:
+    label: Qwen3.5-4B
+    params: 4B dense
+    backbone_of: [decider-4b, pplx-decider-flash]
+    dir: models/qwen3.5-4b
+    file: Qwen3.5-4B-Q8_0.gguf
+    sha256: 10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1
+    port: 8207
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+
+  qwen3.5-27b:
+    label: Qwen3.5-27B
+    params: 27B dense
+    backbone_of: [clef, pplx-decider-27b-embed]
+    dir: models/qwen3.5-27b
+    file: Qwen3.5-27B-Q8_0.gguf
+    sha256: 6b0a101b0a86697fe11eabcc1a7db72699a9f3d4b18b6a1ac75ea3fb2c26c450
+    port: 8208
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+
+  qwen3.5-35b-a3b:
+    label: Qwen3.5-35B-A3B
+    params: 35B total, 3B active (MoE)
+    backbone_of: [decider-35b-a3b]
+    dir: models/qwen3.5-35b-a3b
+    file: Qwen3.5-35B-A3B-Q4_K_M.gguf
+    sha256: 3b46d1066bc91cc2d613e3bc22ce691dd77e6f0d33c9060690d24ce6de494375
+    port: 8209
+    conditions:
+      think:   {template: {enable_thinking: true},  sampling: {temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}
+      nothink: {template: {enable_thinking: false}, sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0, presence_penalty: 1.5}}

@@ -1,0 +1,45 @@
+{
+ "model": "nemotron-bolt-e4b",
+ "condition": "nothink",
+ "seed": 20261102,
+ "data": "imaging_test.jsonl",
+ "settings": "2cbf5cc05a0dfc2d",
+ "settings_detail": {
+  "model": "nemotron-bolt-e4b",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q8_K_XL.gguf",
+  "sha256": "6176bd788769bd58042c165d3dc8e8c86a8ca5c90d5de188a364b31dc9560810",
+  "chat_template_file": null,
+  "condition": "nothink",
+  "template": {
+   "enable_thinking": false
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 64,
+   "min_p": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "d33abbdea4be9d0b748ad286dfdb6516984e0ed2f02be60918d947979793b5ce"
+ },
+ "answered": 1179,
+ "rows": 1179,
+ "n": 1179,
+ "complete": 896,
+ "oos": 180,
+ "ask_rows": 103,
+ "tool_right": 819,
+ "oos_declined": 154,
+ "correct": 730,
+ "all_correct": 884,
+ "strict": 298,
+ "extras": 1603,
+ "ask_no_call": 68,
+ "kind_call": 919,
+ "kind_none": 260,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 1.4821616646614661,
+ "completion_tokens": 161.59287531806615
+}

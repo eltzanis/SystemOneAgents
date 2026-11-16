@@ -1,0 +1,45 @@
+{
+ "model": "nemotron-bolt-e4b",
+ "condition": "think",
+ "seed": 20261102,
+ "data": "biomedical_test.jsonl",
+ "settings": "89dfe79b72716aaf",
+ "settings_detail": {
+  "model": "nemotron-bolt-e4b",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q8_K_XL.gguf",
+  "sha256": "6176bd788769bd58042c165d3dc8e8c86a8ca5c90d5de188a364b31dc9560810",
+  "chat_template_file": null,
+  "condition": "think",
+  "template": {
+   "enable_thinking": true
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 64,
+   "min_p": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "b87c385cccf54fa7599f5a77c8efcd3cba4dde76df3adc9b0cf1305ce3b432a7"
+ },
+ "answered": 824,
+ "rows": 824,
+ "n": 824,
+ "complete": 626,
+ "oos": 127,
+ "ask_rows": 71,
+ "tool_right": 414,
+ "oos_declined": 122,
+ "correct": 353,
+ "all_correct": 475,
+ "strict": 288,
+ "extras": 92,
+ "ask_no_call": 65,
+ "kind_call": 468,
+ "kind_none": 356,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 6.352933522970718,
+ "completion_tokens": 661.2233009708738
+}

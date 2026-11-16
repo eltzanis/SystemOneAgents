@@ -1,0 +1,14 @@
+# MCP servers for `s1a catalog` (list their tools into a catalogue) and `s1a run` (call a tool). Each server is started
+# over stdio with `command` and `args`. The two catalogues of the study (data/catalogues/) are snapshots of the tools of
+# eleven imaging servers and seven biomedical servers; the evaluation needs only those snapshots, never the servers.
+servers:
+  eda:                                               # an example: a Python MCP server run as a module
+    command: ~/miniconda3/envs/stats/bin/python
+    args: [-m, mcp_servers.eda]
+    cwd: ~/mcp_servers_root
+    env: {MPLBACKEND: Agg}
+    description: Exploratory data analysis of a tabular CSV/Excel file with plots and statistical tests.
+  clinicaltrials:                                    # an example: a Node.js MCP server
+    command: npx
+    args: [-y, "@cyanheads/clinicaltrialsgov-mcp-server@2.11.1"]
+    description: Search ClinicalTrials.gov trials, retrieve study details and results, and match patients to trials.

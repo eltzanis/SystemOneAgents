@@ -1,0 +1,200 @@
+{"n": 1, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 2, "verdict": "invented", "kind": "unstated option"}
+{"n": 3, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 4, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 5, "verdict": "unclear", "kind": "filter adds possibly implied restriction"}
+{"n": 6, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 7, "verdict": "grounded", "kind": "item of named set or scale"}
+{"n": 8, "verdict": "invented", "kind": "invented name or label"}
+{"n": 9, "verdict": "invented", "kind": "unstated option"}
+{"n": 10, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 11, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 12, "verdict": "grounded", "kind": "item of named set or scale"}
+{"n": 13, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 14, "verdict": "invented", "kind": "unstated option"}
+{"n": 15, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 16, "verdict": "grounded", "kind": "computed from stated values"}
+{"n": 17, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 18, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 19, "verdict": "invented", "kind": "unstated option"}
+{"n": 20, "verdict": "invented", "kind": "invented name or label"}
+{"n": 21, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 22, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 23, "verdict": "invented", "kind": "mis-derived stated quantity"}
+{"n": 24, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 25, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 26, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 27, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 28, "verdict": "invented", "kind": "invented name or label"}
+{"n": 29, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 30, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 31, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 32, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 33, "verdict": "grounded", "kind": "reformatted value"}
+{"n": 34, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 35, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 36, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 37, "verdict": "invented", "kind": "invented name or label"}
+{"n": 38, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 39, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 40, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 41, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 42, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 43, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 44, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 45, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 46, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 47, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 48, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 49, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 50, "verdict": "invented", "kind": "unstated option"}
+{"n": 51, "verdict": "invented", "kind": "unstated option"}
+{"n": 52, "verdict": "unclear", "kind": "structural key for stated fact"}
+{"n": 53, "verdict": "grounded", "kind": "canonical name from abbreviation"}
+{"n": 54, "verdict": "invented", "kind": "unstated option"}
+{"n": 55, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 56, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 57, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 58, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 59, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 60, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 61, "verdict": "invented", "kind": "unstated option"}
+{"n": 62, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 63, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 64, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 65, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 66, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 67, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 68, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 69, "verdict": "invented", "kind": "unstated option"}
+{"n": 70, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 71, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 72, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 73, "verdict": "invented", "kind": "unstated option"}
+{"n": 74, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 75, "verdict": "invented", "kind": "unstated option"}
+{"n": 76, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 77, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 78, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 79, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 80, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 81, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 82, "verdict": "invented", "kind": "invented name or label"}
+{"n": 83, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 84, "verdict": "invented", "kind": "mis-derived stated quantity"}
+{"n": 85, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 86, "verdict": "invented", "kind": "unstated option"}
+{"n": 87, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 88, "verdict": "grounded", "kind": "canonical name from abbreviation"}
+{"n": 89, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 90, "verdict": "grounded", "kind": "reformatted value"}
+{"n": 91, "verdict": "unclear", "kind": "path of referenced but unspecified object"}
+{"n": 92, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 93, "verdict": "invented", "kind": "invented data value"}
+{"n": 94, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 95, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 96, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 97, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 98, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 99, "verdict": "unclear", "kind": "path of referenced but unspecified object"}
+{"n": 100, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 101, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 102, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 103, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 104, "verdict": "invented", "kind": "unstated option"}
+{"n": 105, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 106, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 107, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 108, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 109, "verdict": "grounded", "kind": "item of named set or scale"}
+{"n": 110, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 111, "verdict": "invented", "kind": "mis-derived stated quantity"}
+{"n": 112, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 113, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 114, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 115, "verdict": "grounded", "kind": "rephrased request terms"}
+{"n": 116, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 117, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 118, "verdict": "grounded", "kind": "item of named set or scale"}
+{"n": 119, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 120, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 121, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 122, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 123, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 124, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 125, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 126, "verdict": "invented", "kind": "invented name or label"}
+{"n": 127, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 128, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 129, "verdict": "invented", "kind": "unstated option"}
+{"n": 130, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 131, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 132, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 133, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 134, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 135, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 136, "verdict": "unclear", "kind": "free-text label restating request"}
+{"n": 137, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 138, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 139, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 140, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 141, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 142, "verdict": "grounded", "kind": "canonical name from abbreviation"}
+{"n": 143, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 144, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 145, "verdict": "invented", "kind": "unstated option"}
+{"n": 146, "verdict": "unclear", "kind": "class name inferred from dataset name"}
+{"n": 147, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 148, "verdict": "grounded", "kind": "canonical name from abbreviation"}
+{"n": 149, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 150, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 151, "verdict": "unclear", "kind": "path of referenced but unspecified object"}
+{"n": 152, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 153, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 154, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 155, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 156, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 157, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 158, "verdict": "grounded", "kind": "canonical name from abbreviation"}
+{"n": 159, "verdict": "invented", "kind": "mis-derived stated quantity"}
+{"n": 160, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 161, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 162, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 163, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 164, "verdict": "invented", "kind": "unstated option"}
+{"n": 165, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 166, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 167, "verdict": "grounded", "kind": "item of named set or scale"}
+{"n": 168, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 169, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 170, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 171, "verdict": "invented", "kind": "unstated option"}
+{"n": 172, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 173, "verdict": "invented", "kind": "unstated option"}
+{"n": 174, "verdict": "invented", "kind": "unstated option"}
+{"n": 175, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 176, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 177, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 178, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 179, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 180, "verdict": "invented", "kind": "invented data value"}
+{"n": 181, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 182, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 183, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 184, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 185, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 186, "verdict": "invented", "kind": "assumed domain fact"}
+{"n": 187, "verdict": "grounded", "kind": "computed from stated values"}
+{"n": 188, "verdict": "unclear", "kind": "refers to unseen earlier content"}
+{"n": 189, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 190, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 191, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 192, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 193, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 194, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 195, "verdict": "grounded", "kind": "rephrased request terms"}
+{"n": 196, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 197, "verdict": "invented", "kind": "invented path or file name"}
+{"n": 198, "verdict": "invented", "kind": "mis-derived stated quantity"}
+{"n": 199, "verdict": "invented", "kind": "unstated hyperparameter"}
+{"n": 200, "verdict": "unclear", "kind": "refers to unseen earlier content"}

@@ -1,0 +1,13 @@
+# Text files are stored and checked out with LF line endings on every platform.
+* text=auto eol=lf
+
+# The released data, results, figures and the scorer's data files are checked byte for byte
+# (SHA256SUMS.txt and the byte-identical comparisons of the reproduction). Git must never convert them.
+data/**                 -text
+results/**              -text
+figures/**              -text
+code/src/s1eval/data/** -text
+
+*.jpg binary
+*.png binary
+*.pdf binary

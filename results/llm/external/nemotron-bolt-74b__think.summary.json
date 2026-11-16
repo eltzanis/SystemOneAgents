@@ -1,0 +1,45 @@
+{
+ "model": "nemotron-bolt-74b",
+ "condition": "think",
+ "seed": 20261102,
+ "data": "external.jsonl",
+ "settings": "d9da7158b5315313",
+ "settings_detail": {
+  "model": "nemotron-bolt-74b",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+  "sha256": "91d63363e782c8a3d5f4be42816eba8e0d42dd2530bd07a7d0d2dc440599af75",
+  "chat_template_file": null,
+  "condition": "think",
+  "template": {
+   "enable_thinking": true
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 0,
+   "min_p": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "d33abbdea4be9d0b748ad286dfdb6516984e0ed2f02be60918d947979793b5ce"
+ },
+ "answered": 123,
+ "rows": 123,
+ "n": 123,
+ "complete": 123,
+ "oos": 0,
+ "ask_rows": 0,
+ "tool_right": 120,
+ "oos_declined": 0,
+ "correct": 111,
+ "all_correct": 111,
+ "strict": 98,
+ "extras": 34,
+ "ask_no_call": 0,
+ "kind_call": 123,
+ "kind_none": 0,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 4.666495440723627,
+ "completion_tokens": 493.0487804878049
+}

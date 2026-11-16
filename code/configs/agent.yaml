@@ -1,0 +1,9 @@
+# Settings of the System 1 agent (s1agent.build_agent); the values of the study's runs.
+select_min_conf: 0.3     # below this selection confidence the agent abstains (the evaluation scores the raw selection: 0)
+optional_min_conf: 0.7   # an optional value is set only when P(the request gives it) reaches this
+list_min_conf: 0.7       # the same bar for a list's first item
+# Values for arguments the request leaves open; {workspace}, {tool} and {timestamp} are filled in. Never shown to the
+# model: a value the request states always comes from the request.
+policy_defaults:
+  output_dir: "{workspace}/{tool}_{timestamp}"
+workspace: runs/workspace  # relative to the current folder

@@ -1,0 +1,45 @@
+{
+ "model": "gemma-4-e4b",
+ "condition": "nothink",
+ "seed": 20261102,
+ "data": "imaging_test.jsonl",
+ "settings": "666b5e4105da7430",
+ "settings_detail": {
+  "model": "gemma-4-e4b",
+  "file": "gemma-4-E4B-it-Q8_0.gguf",
+  "sha256": "34be82b17b4942d389b9b527170c4b058027abdd32531fda063d3d97dd8ce80a",
+  "chat_template_file": null,
+  "condition": "nothink",
+  "template": {
+   "enable_thinking": false
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 64,
+   "min_p": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "d33abbdea4be9d0b748ad286dfdb6516984e0ed2f02be60918d947979793b5ce"
+ },
+ "answered": 1179,
+ "rows": 1179,
+ "n": 1179,
+ "complete": 896,
+ "oos": 180,
+ "ask_rows": 103,
+ "tool_right": 720,
+ "oos_declined": 166,
+ "correct": 613,
+ "all_correct": 779,
+ "strict": 316,
+ "extras": 726,
+ "ask_no_call": 87,
+ "kind_call": 777,
+ "kind_none": 402,
+ "kind_error": 0,
+ "truncated": 0,
+ "seconds": 1.2998968411934457,
+ "completion_tokens": 139.93723494486852
+}

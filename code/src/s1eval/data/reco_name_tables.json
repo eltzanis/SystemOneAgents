@@ -1,0 +1,1092 @@
+{
+ "about": "Name tables of the imaging (ReCo) MCP servers that the scorer uses: for each, the server source file and the variable that holds it (the literal assigned to it; dictionary entries whose key or value is computed are left out). Extracted with scripts/extract_name_tables.py.",
+ "tables": {
+  "feature_importance_analysis_tool.py:method_mapping": {
+   "rf": "rf",
+   "randomforest": "rf",
+   "random_forest": "rf",
+   "random forest": "rf",
+   "randomforests": "rf",
+   "random_forests": "rf",
+   "randomforestimportance": "rf",
+   "forest": "rf",
+   "ftest": "f_test",
+   "f_test": "f_test",
+   "f test": "f_test",
+   "ftests": "f_test",
+   "f_tests": "f_test",
+   "anova": "f_test",
+   "anovaftest": "f_test",
+   "anovafvalue": "f_test",
+   "fvalue": "f_test",
+   "fstat": "f_test",
+   "fstatistic": "f_test",
+   "mutualinfo": "mutual_info",
+   "mutual_info": "mutual_info",
+   "mutual info": "mutual_info",
+   "mutualinformation": "mutual_info",
+   "mutual_information": "mutual_info",
+   "mutual information": "mutual_info",
+   "mi": "mutual_info",
+   "mutinfo": "mutual_info",
+   "rfe": "rfe",
+   "recursivefeatureelimination": "rfe",
+   "recursive_feature_elimination": "rfe",
+   "recursive feature elimination": "rfe",
+   "recursiveelimination": "rfe",
+   "recursive_elimination": "rfe",
+   "recursive elimination": "rfe",
+   "featureelimination": "rfe",
+   "feature_elimination": "rfe",
+   "feature elimination": "rfe"
+  },
+  "feature_importance_analysis_tool.py:target_patterns": [
+   "label",
+   "labels",
+   "target",
+   "targets",
+   "outcome",
+   "outcomes",
+   "diagnosis",
+   "class",
+   "classes",
+   "class_label",
+   "y",
+   "Y",
+   "response",
+   "dependent",
+   "dependent_variable",
+   "result",
+   "results",
+   "prediction",
+   "predictions",
+   "status",
+   "output",
+   "outputs",
+   "category",
+   "categories",
+   "ground_truth",
+   "groundtruth",
+   "annotation",
+   "annotations"
+  ],
+  "pycaret_classification_inference_tool.py:common_ground_truth_names": [
+   "label",
+   "labels",
+   "target",
+   "targets",
+   "outcome",
+   "outcomes",
+   "result",
+   "results",
+   "class",
+   "classes",
+   "y",
+   "output",
+   "response",
+   "dependent",
+   "prediction",
+   "category",
+   "ground_truth",
+   "groundtruth",
+   "ground truth",
+   "actual",
+   "true_label",
+   "true label",
+   "truelabel",
+   "truth"
+  ],
+  "pycaret_classification_tool.py:MODEL_NAME_MAPPING": {
+   "et": "et",
+   "catboost": "catboost",
+   "nb": "nb",
+   "rf": "rf",
+   "lightgbm": "lightgbm",
+   "gbc": "gbc",
+   "lr": "lr",
+   "ridge": "ridge",
+   "lda": "lda",
+   "xgboost": "xgboost",
+   "knn": "knn",
+   "svm": "svm",
+   "qda": "qda",
+   "ada": "ada",
+   "dt": "dt",
+   "dummy": "dummy",
+   "extra trees classifier": "et",
+   "extra trees": "et",
+   "catboost classifier": "catboost",
+   "naive bayes": "nb",
+   "random forest classifier": "rf",
+   "random forest": "rf",
+   "light gradient boosting machine": "lightgbm",
+   "lightgbm classifier": "lightgbm",
+   "gradient boosting classifier": "gbc",
+   "gradient boosting": "gbc",
+   "logistic regression": "lr",
+   "ridge classifier": "ridge",
+   "linear discriminant analysis": "lda",
+   "extreme gradient boosting": "xgboost",
+   "xgboost classifier": "xgboost",
+   "k neighbors classifier": "knn",
+   "k neighbors": "knn",
+   "kneighbors": "knn",
+   "svm - linear kernel": "svm",
+   "svm linear": "svm",
+   "support vector machine": "svm",
+   "quadratic discriminant analysis": "qda",
+   "ada boost classifier": "ada",
+   "adaboost": "ada",
+   "ada boost": "ada",
+   "decision tree classifier": "dt",
+   "decision tree": "dt",
+   "dummy classifier": "dummy"
+  },
+  "pycaret_classification_tool.py:common_target_names": [
+   "label",
+   "labels",
+   "target",
+   "targets",
+   "outcome",
+   "outcomes",
+   "result",
+   "results",
+   "class",
+   "classes",
+   "y",
+   "output",
+   "response",
+   "dependent",
+   "prediction",
+   "category",
+   "ground_truth",
+   "groundtruth",
+   "ground truth",
+   "actual",
+   "true_label",
+   "true label",
+   "truelabel",
+   "truth"
+  ],
+  "pycaret_regression_tool.py:common_target_names": [
+   "label",
+   "labels",
+   "target",
+   "targets",
+   "outcome",
+   "outcomes",
+   "result",
+   "results",
+   "y",
+   "output",
+   "response",
+   "dependent",
+   "prediction",
+   "ground_truth",
+   "groundtruth",
+   "ground truth",
+   "actual",
+   "true_value",
+   "true value",
+   "truevalue",
+   "truth",
+   "value",
+   "score"
+  ],
+  "pyradiomics_feature_extraction_tool.py:FILTER_NAME_MAPPING": {
+   "original": "Original",
+   "orig": "Original",
+   "raw": "Original",
+   "unfiltered": "Original",
+   "no filter": "Original",
+   "nofilter": "Original",
+   "none": "Original",
+   "wavelet": "Wavelet",
+   "wavelets": "Wavelet",
+   "wavlet": "Wavelet",
+   "wavet": "Wavelet",
+   "wave": "Wavelet",
+   "wvlt": "Wavelet",
+   "log": "LoG",
+   "laplacian": "LoG",
+   "laplacian of gaussian": "LoG",
+   "laplacian gaussian": "LoG",
+   "laplacianofgaussian": "LoG",
+   "gaussian laplacian": "LoG",
+   "gaussian": "LoG",
+   "lap": "LoG",
+   "laplac": "LoG",
+   "laplas": "LoG",
+   "laplasian": "LoG",
+   "laplacain": "LoG",
+   "exponential": "Exponential",
+   "exp": "Exponential",
+   "exponent": "Exponential",
+   "exponetial": "Exponential",
+   "expon": "Exponential",
+   "gradient": "Gradient",
+   "grad": "Gradient",
+   "gradiant": "Gradient",
+   "gradeint": "Gradient",
+   "graident": "Gradient",
+   "squareroot": "SquareRoot",
+   "square root": "SquareRoot",
+   "sqrt": "SquareRoot",
+   "sqroot": "SquareRoot",
+   "sq root": "SquareRoot",
+   "sqr": "SquareRoot",
+   "square": "SquareRoot",
+   "sqare root": "SquareRoot",
+   "squarerot": "SquareRoot",
+   "squarerute": "SquareRoot",
+   "lbp2d": "LBP2D",
+   "lbp 2d": "LBP2D",
+   "lbp-2d": "LBP2D",
+   "lbp_2d": "LBP2D",
+   "local binary pattern 2d": "LBP2D",
+   "local binary pattern": "LBP2D",
+   "lbp": "LBP2D",
+   "binary pattern 2d": "LBP2D",
+   "binary pattern": "LBP2D",
+   "localbinarypattern2d": "LBP2D",
+   "localbinarypattern": "LBP2D",
+   "lbp2": "LBP2D",
+   "lbptwo": "LBP2D",
+   "lbp two": "LBP2D",
+   "lbp3d": "LBP3D",
+   "lbp 3d": "LBP3D",
+   "lbp-3d": "LBP3D",
+   "lbp_3d": "LBP3D",
+   "local binary pattern 3d": "LBP3D",
+   "binary pattern 3d": "LBP3D",
+   "localbinarypattern3d": "LBP3D",
+   "lbp3": "LBP3D",
+   "lbpthree": "LBP3D",
+   "lbp three": "LBP3D"
+  },
+  "totalsegmentator_tool.py:ORGAN_NAME_MAPPING": {
+   "kidney": [
+    "kidney_right",
+    "kidney_left"
+   ],
+   "kidneys": [
+    "kidney_right",
+    "kidney_left"
+   ],
+   "both kidneys": [
+    "kidney_right",
+    "kidney_left"
+   ],
+   "kidney_right": [
+    "kidney_right"
+   ],
+   "kidney_left": [
+    "kidney_left"
+   ],
+   "right_kidney": [
+    "kidney_right"
+   ],
+   "left_kidney": [
+    "kidney_left"
+   ],
+   "right kidney": [
+    "kidney_right"
+   ],
+   "left kidney": [
+    "kidney_left"
+   ],
+   "kidney right": [
+    "kidney_right"
+   ],
+   "kidney left": [
+    "kidney_left"
+   ],
+   "kidney cyst": [
+    "kidney_cyst_right",
+    "kidney_cyst_left"
+   ],
+   "kidney cysts": [
+    "kidney_cyst_right",
+    "kidney_cyst_left"
+   ],
+   "right kidney cyst": [
+    "kidney_cyst_right"
+   ],
+   "left kidney cyst": [
+    "kidney_cyst_left"
+   ],
+   "liver": [
+    "liver"
+   ],
+   "liver_tumor": [
+    "liver_tumor"
+   ],
+   "liver tumor": [
+    "liver_tumor"
+   ],
+   "liver_vessels": [
+    "liver_vessels"
+   ],
+   "liver vessels": [
+    "liver_vessels"
+   ],
+   "spleen": [
+    "spleen"
+   ],
+   "pancreas": [
+    "pancreas"
+   ],
+   "stomach": [
+    "stomach"
+   ],
+   "gallbladder": [
+    "gallbladder"
+   ],
+   "gall_bladder": [
+    "gallbladder"
+   ],
+   "gall bladder": [
+    "gallbladder"
+   ],
+   "bladder": [
+    "urinary_bladder"
+   ],
+   "urinary_bladder": [
+    "urinary_bladder"
+   ],
+   "urinary bladder": [
+    "urinary_bladder"
+   ],
+   "prostate": [
+    "prostate"
+   ],
+   "adrenal": [
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+   ],
+   "adrenal_gland": [
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+   ],
+   "adrenal gland": [
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+   ],
+   "adrenal_glands": [
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+   ],
+   "adrenal glands": [
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+   ],
+   "adrenal_gland_right": [
+    "adrenal_gland_right"
+   ],
+   "adrenal_gland_left": [
+    "adrenal_gland_left"
+   ],
+   "right adrenal gland": [
+    "adrenal_gland_right"
+   ],
+   "left adrenal gland": [
+    "adrenal_gland_left"
+   ],
+   "thyroid": [
+    "thyroid_gland"
+   ],
+   "thyroid_gland": [
+    "thyroid_gland"
+   ],
+   "thyroid gland": [
+    "thyroid_gland"
+   ],
+   "brain": [
+    "brain"
+   ],
+   "spinal_cord": [
+    "spinal_cord"
+   ],
+   "spinal cord": [
+    "spinal_cord"
+   ],
+   "spinalcord": [
+    "spinal_cord"
+   ],
+   "face": [
+    "face"
+   ],
+   "heart": [
+    "heart"
+   ],
+   "heart_complete": [
+    "heart_atrium_left",
+    "heart_atrium_right",
+    "heart_ventricle_left",
+    "heart_ventricle_right",
+    "heart_myocardium"
+   ],
+   "heart_chambers": [
+    "heart_atrium_left",
+    "heart_atrium_right",
+    "heart_ventricle_left",
+    "heart_ventricle_right"
+   ],
+   "heart_atrium_left": [
+    "heart_atrium_left"
+   ],
+   "heart_atrium_right": [
+    "heart_atrium_right"
+   ],
+   "heart_ventricle_left": [
+    "heart_ventricle_left"
+   ],
+   "heart_ventricle_right": [
+    "heart_ventricle_right"
+   ],
+   "heart_myocardium": [
+    "heart_myocardium"
+   ],
+   "heart myocardium": [
+    "heart_myocardium"
+   ],
+   "myocardium": [
+    "heart_myocardium"
+   ],
+   "left atrium": [
+    "heart_atrium_left"
+   ],
+   "right atrium": [
+    "heart_atrium_right"
+   ],
+   "left ventricle": [
+    "heart_ventricle_left"
+   ],
+   "right ventricle": [
+    "heart_ventricle_right"
+   ],
+   "atrial appendage left": [
+    "atrial_appendage_left"
+   ],
+   "left atrial appendage": [
+    "atrial_appendage_left"
+   ],
+   "lung": [
+    "lung_upper_lobe_left",
+    "lung_lower_lobe_left",
+    "lung_upper_lobe_right",
+    "lung_middle_lobe_right",
+    "lung_lower_lobe_right"
+   ],
+   "lungs": [
+    "lung_upper_lobe_left",
+    "lung_lower_lobe_left",
+    "lung_upper_lobe_right",
+    "lung_middle_lobe_right",
+    "lung_lower_lobe_right"
+   ],
+   "lung_left": [
+    "lung_upper_lobe_left",
+    "lung_lower_lobe_left"
+   ],
+   "lung_right": [
+    "lung_upper_lobe_right",
+    "lung_middle_lobe_right",
+    "lung_lower_lobe_right"
+   ],
+   "left_lung": [
+    "lung_upper_lobe_left",
+    "lung_lower_lobe_left"
+   ],
+   "right_lung": [
+    "lung_upper_lobe_right",
+    "lung_middle_lobe_right",
+    "lung_lower_lobe_right"
+   ],
+   "left lung": [
+    "lung_upper_lobe_left",
+    "lung_lower_lobe_left"
+   ],
+   "right lung": [
+    "lung_upper_lobe_right",
+    "lung_middle_lobe_right",
+    "lung_lower_lobe_right"
+   ],
+   "lung_upper_lobe_left": [
+    "lung_upper_lobe_left"
+   ],
+   "lung_lower_lobe_left": [
+    "lung_lower_lobe_left"
+   ],
+   "lung_upper_lobe_right": [
+    "lung_upper_lobe_right"
+   ],
+   "lung_middle_lobe_right": [
+    "lung_middle_lobe_right"
+   ],
+   "lung_lower_lobe_right": [
+    "lung_lower_lobe_right"
+   ],
+   "lung_vessels": [
+    "lung_vessels"
+   ],
+   "lung vessels": [
+    "lung_vessels"
+   ],
+   "lung_trachea_bronchia": [
+    "lung_trachea_bronchia"
+   ],
+   "lung_pleural": [
+    "lung_pleural"
+   ],
+   "lung_covid_infiltrate": [
+    "lung_covid_infiltrate"
+   ],
+   "covid_infiltrate": [
+    "lung_covid_infiltrate"
+   ],
+   "trachea": [
+    "trachea"
+   ],
+   "windpipe": [
+    "trachea"
+   ],
+   "esophagus": [
+    "esophagus"
+   ],
+   "oesophagus": [
+    "esophagus"
+   ],
+   "small_bowel": [
+    "small_bowel"
+   ],
+   "small bowel": [
+    "small_bowel"
+   ],
+   "small_intestine": [
+    "small_bowel"
+   ],
+   "small intestine": [
+    "small_bowel"
+   ],
+   "duodenum": [
+    "duodenum"
+   ],
+   "colon": [
+    "colon"
+   ],
+   "large_intestine": [
+    "colon"
+   ],
+   "large intestine": [
+    "colon"
+   ],
+   "aorta": [
+    "aorta"
+   ],
+   "pulmonary_artery": [
+    "pulmonary_artery"
+   ],
+   "pulmonary_vein": [
+    "pulmonary_vein"
+   ],
+   "superior_vena_cava": [
+    "superior_vena_cava"
+   ],
+   "inferior_vena_cava": [
+    "inferior_vena_cava"
+   ],
+   "portal_vein_and_splenic_vein": [
+    "portal_vein_and_splenic_vein"
+   ],
+   "portal_vein": [
+    "portal_vein_and_splenic_vein"
+   ],
+   "splenic_vein": [
+    "portal_vein_and_splenic_vein"
+   ],
+   "brachiocephalic_trunk": [
+    "brachiocephalic_trunk"
+   ],
+   "brachiocephalic_vein": [
+    "brachiocephalic_vein_left",
+    "brachiocephalic_vein_right"
+   ],
+   "brachiocephalic_vein_left": [
+    "brachiocephalic_vein_left"
+   ],
+   "brachiocephalic_vein_right": [
+    "brachiocephalic_vein_right"
+   ],
+   "subclavian_artery": [
+    "subclavian_artery_right",
+    "subclavian_artery_left"
+   ],
+   "subclavian_artery_right": [
+    "subclavian_artery_right"
+   ],
+   "subclavian_artery_left": [
+    "subclavian_artery_left"
+   ],
+   "carotid_artery": [
+    "common_carotid_artery_right",
+    "common_carotid_artery_left"
+   ],
+   "carotid": [
+    "common_carotid_artery_right",
+    "common_carotid_artery_left"
+   ],
+   "common_carotid_artery": [
+    "common_carotid_artery_right",
+    "common_carotid_artery_left"
+   ],
+   "common_carotid_artery_right": [
+    "common_carotid_artery_right"
+   ],
+   "common_carotid_artery_left": [
+    "common_carotid_artery_left"
+   ],
+   "iliac_artery": [
+    "iliac_artery_left",
+    "iliac_artery_right"
+   ],
+   "iliac_artery_left": [
+    "iliac_artery_left"
+   ],
+   "iliac_artery_right": [
+    "iliac_artery_right"
+   ],
+   "iliac_vena": [
+    "iliac_vena_left",
+    "iliac_vena_right"
+   ],
+   "iliac_vein": [
+    "iliac_vena_left",
+    "iliac_vena_right"
+   ],
+   "iliac_vena_left": [
+    "iliac_vena_left"
+   ],
+   "iliac_vena_right": [
+    "iliac_vena_right"
+   ],
+   "coronary_arteries": [
+    "coronary_arteries"
+   ],
+   "vertebrae_C1": [
+    "vertebrae_C1"
+   ],
+   "vertebrae_C2": [
+    "vertebrae_C2"
+   ],
+   "vertebrae_C3": [
+    "vertebrae_C3"
+   ],
+   "vertebrae_C4": [
+    "vertebrae_C4"
+   ],
+   "vertebrae_C5": [
+    "vertebrae_C5"
+   ],
+   "vertebrae_C6": [
+    "vertebrae_C6"
+   ],
+   "vertebrae_C7": [
+    "vertebrae_C7"
+   ],
+   "vertebrae_T1": [
+    "vertebrae_T1"
+   ],
+   "vertebrae_T2": [
+    "vertebrae_T2"
+   ],
+   "vertebrae_T3": [
+    "vertebrae_T3"
+   ],
+   "vertebrae_T4": [
+    "vertebrae_T4"
+   ],
+   "vertebrae_T5": [
+    "vertebrae_T5"
+   ],
+   "vertebrae_T6": [
+    "vertebrae_T6"
+   ],
+   "vertebrae_T7": [
+    "vertebrae_T7"
+   ],
+   "vertebrae_T8": [
+    "vertebrae_T8"
+   ],
+   "vertebrae_T9": [
+    "vertebrae_T9"
+   ],
+   "vertebrae_T10": [
+    "vertebrae_T10"
+   ],
+   "vertebrae_T11": [
+    "vertebrae_T11"
+   ],
+   "vertebrae_T12": [
+    "vertebrae_T12"
+   ],
+   "vertebrae_L1": [
+    "vertebrae_L1"
+   ],
+   "vertebrae_L2": [
+    "vertebrae_L2"
+   ],
+   "vertebrae_L3": [
+    "vertebrae_L3"
+   ],
+   "vertebrae_L4": [
+    "vertebrae_L4"
+   ],
+   "vertebrae_L5": [
+    "vertebrae_L5"
+   ],
+   "sacrum": [
+    "sacrum"
+   ],
+   "vertebrae_S1": [
+    "vertebrae_S1"
+   ],
+   "vertebrae_body": [
+    "vertebrae_body"
+   ],
+   "intervertebral_discs": [
+    "intervertebral_discs"
+   ],
+   "intervertebral discs": [
+    "intervertebral_discs"
+   ],
+   "discs": [
+    "intervertebral_discs"
+   ],
+   "ivd": [
+    "intervertebral_discs"
+   ],
+   "rib_left_1": [
+    "rib_left_1"
+   ],
+   "rib_left_2": [
+    "rib_left_2"
+   ],
+   "rib_left_3": [
+    "rib_left_3"
+   ],
+   "rib_left_4": [
+    "rib_left_4"
+   ],
+   "rib_left_5": [
+    "rib_left_5"
+   ],
+   "rib_left_6": [
+    "rib_left_6"
+   ],
+   "rib_left_7": [
+    "rib_left_7"
+   ],
+   "rib_left_8": [
+    "rib_left_8"
+   ],
+   "rib_left_9": [
+    "rib_left_9"
+   ],
+   "rib_left_10": [
+    "rib_left_10"
+   ],
+   "rib_left_11": [
+    "rib_left_11"
+   ],
+   "rib_left_12": [
+    "rib_left_12"
+   ],
+   "rib_right_1": [
+    "rib_right_1"
+   ],
+   "rib_right_2": [
+    "rib_right_2"
+   ],
+   "rib_right_3": [
+    "rib_right_3"
+   ],
+   "rib_right_4": [
+    "rib_right_4"
+   ],
+   "rib_right_5": [
+    "rib_right_5"
+   ],
+   "rib_right_6": [
+    "rib_right_6"
+   ],
+   "rib_right_7": [
+    "rib_right_7"
+   ],
+   "rib_right_8": [
+    "rib_right_8"
+   ],
+   "rib_right_9": [
+    "rib_right_9"
+   ],
+   "rib_right_10": [
+    "rib_right_10"
+   ],
+   "rib_right_11": [
+    "rib_right_11"
+   ],
+   "rib_right_12": [
+    "rib_right_12"
+   ],
+   "costal_cartilages": [
+    "costal_cartilages"
+   ],
+   "humerus": [
+    "humerus_left",
+    "humerus_right"
+   ],
+   "humerus_left": [
+    "humerus_left"
+   ],
+   "humerus_right": [
+    "humerus_right"
+   ],
+   "ulna": [
+    "ulna"
+   ],
+   "radius": [
+    "radius"
+   ],
+   "carpal": [
+    "carpal"
+   ],
+   "carpals": [
+    "carpal"
+   ],
+   "metacarpal": [
+    "metacarpal"
+   ],
+   "metacarpals": [
+    "metacarpal"
+   ],
+   "phalanges_hand": [
+    "phalanges_hand"
+   ],
+   "hand_phalanges": [
+    "phalanges_hand"
+   ],
+   "finger_bones": [
+    "phalanges_hand"
+   ],
+   "femur": [
+    "femur_left",
+    "femur_right"
+   ],
+   "femur_left": [
+    "femur_left"
+   ],
+   "femur_right": [
+    "femur_right"
+   ],
+   "patella": [
+    "patella"
+   ],
+   "kneecap": [
+    "patella"
+   ],
+   "tibia": [
+    "tibia"
+   ],
+   "fibula": [
+    "fibula"
+   ],
+   "tarsal": [
+    "tarsal"
+   ],
+   "tarsals": [
+    "tarsal"
+   ],
+   "metatarsal": [
+    "metatarsal"
+   ],
+   "metatarsals": [
+    "metatarsal"
+   ],
+   "phalanges_feet": [
+    "phalanges_feet"
+   ],
+   "foot_phalanges": [
+    "phalanges_feet"
+   ],
+   "toe_bones": [
+    "phalanges_feet"
+   ],
+   "scapula": [
+    "scapula_left",
+    "scapula_right"
+   ],
+   "scapula_left": [
+    "scapula_left"
+   ],
+   "scapula_right": [
+    "scapula_right"
+   ],
+   "shoulder_blade": [
+    "scapula_left",
+    "scapula_right"
+   ],
+   "clavicula": [
+    "clavicula_left",
+    "clavicula_right"
+   ],
+   "clavicle": [
+    "clavicula_left",
+    "clavicula_right"
+   ],
+   "clavicula_left": [
+    "clavicula_left"
+   ],
+   "clavicula_right": [
+    "clavicula_right"
+   ],
+   "collarbone": [
+    "clavicula_left",
+    "clavicula_right"
+   ],
+   "hip": [
+    "hip_left",
+    "hip_right"
+   ],
+   "hip_left": [
+    "hip_left"
+   ],
+   "hip_right": [
+    "hip_right"
+   ],
+   "left hip": [
+    "hip_left"
+   ],
+   "right hip": [
+    "hip_right"
+   ],
+   "sternum": [
+    "sternum"
+   ],
+   "breastbone": [
+    "sternum"
+   ],
+   "skull": [
+    "skull"
+   ],
+   "gluteus_maximus": [
+    "gluteus_maximus_left",
+    "gluteus_maximus_right"
+   ],
+   "gluteus_maximus_left": [
+    "gluteus_maximus_left"
+   ],
+   "gluteus_maximus_right": [
+    "gluteus_maximus_right"
+   ],
+   "gluteus_medius": [
+    "gluteus_medius_left",
+    "gluteus_medius_right"
+   ],
+   "gluteus_medius_left": [
+    "gluteus_medius_left"
+   ],
+   "gluteus_medius_right": [
+    "gluteus_medius_right"
+   ],
+   "gluteus_minimus": [
+    "gluteus_minimus_left",
+    "gluteus_minimus_right"
+   ],
+   "gluteus_minimus_left": [
+    "gluteus_minimus_left"
+   ],
+   "gluteus_minimus_right": [
+    "gluteus_minimus_right"
+   ],
+   "gluteal_muscles": [
+    "gluteus_maximus_left",
+    "gluteus_maximus_right",
+    "gluteus_medius_left",
+    "gluteus_medius_right",
+    "gluteus_minimus_left",
+    "gluteus_minimus_right"
+   ],
+   "iliopsoas": [
+    "iliopsoas_left",
+    "iliopsoas_right"
+   ],
+   "iliopsoas_left": [
+    "iliopsoas_left"
+   ],
+   "iliopsoas_right": [
+    "iliopsoas_right"
+   ],
+   "autochthon": [
+    "autochthon_left",
+    "autochthon_right"
+   ],
+   "autochthon_left": [
+    "autochthon_left"
+   ],
+   "autochthon_right": [
+    "autochthon_right"
+   ],
+   "skeletal_muscle": [
+    "skeletal_muscle"
+   ],
+   "skeletal muscle": [
+    "skeletal_muscle"
+   ],
+   "subcutaneous_fat": [
+    "subcutaneous_fat"
+   ],
+   "subcutaneous fat": [
+    "subcutaneous_fat"
+   ],
+   "torso_fat": [
+    "torso_fat"
+   ],
+   "torso fat": [
+    "torso_fat"
+   ],
+   "body_trunc": [
+    "body_trunc"
+   ],
+   "body_trunk": [
+    "body_trunc"
+   ],
+   "trunk": [
+    "body_trunc"
+   ],
+   "body_extremities": [
+    "body_extremities"
+   ],
+   "extremities": [
+    "body_extremities"
+   ],
+   "intracerebral_hemorrhage": [
+    "intracerebral_hemorrhage"
+   ],
+   "brain_hemorrhage": [
+    "intracerebral_hemorrhage"
+   ],
+   "brain_bleed": [
+    "intracerebral_hemorrhage"
+   ],
+   "hip_implant": [
+    "hip_implant"
+   ],
+   "pleural_effusion": [
+    "pleural_effusion"
+   ],
+   "pericardial_effusion": [
+    "pericardial_effusion"
+   ]
+  }
+ }
+}

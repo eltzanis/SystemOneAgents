@@ -121,31 +121,85 @@ The study used six published decision models, with no fine-tuning:
 | `OpenJev` | native SystemOne |
 | `Clef` | native SystemOne |
 
-Model inference was served locally through **llama.cpp** (study build **b11929**). Model-specific prompt layouts and probability read-outs are described in the paper. The evaluation used a single **NVIDIA RTX PRO 5000 Blackwell 48-GB GPU**, Ubuntu 24.04, 32 CPU threads and 62 GB system memory. These describe the **experimental setup**, not necessarily minimum hardware requirements.
+Model inference was served locally through **llama.cpp** (study build **b11929**). Model-specific prompt layouts and probability read-outs are described in the paper, in [`code/src/s1agent/backends/`](code/src/s1agent/backends/) and in [`code/configs/models.yaml`](code/configs/models.yaml). The evaluation used a single **NVIDIA RTX PRO 5000 Blackwell 48-GB GPU**, Ubuntu 24.04, 32 CPU threads and 62 GB system memory. These describe the **experimental setup**, not necessarily minimum hardware requirements.
+
+## Repository layout
+
+| Folder | Contents |
+|---|---|
+| [`code/`](code/) | the System 1 agent (agent, compiler, decision-model back-ends), the LLM-agent baseline, the scorer, and scripts to run, replay and analyse; see [`code/README.md`](code/README.md) |
+| [`data/`](data/) | the evaluation requests with their labels, and the two MCP tool catalogues; see [`data/README.md`](data/README.md) |
+| [`results/`](results/) | every agent's records, the stored decision-model answers, the LLM completions, the analysis outputs and the fabrication review |
+| [`figures/`](figures/) | the manuscript figures (PDF, SVG, PNG) |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | how a System 1 agent works, and the method used to develop it |
+| [`.claude/skills/reproduce-results/`](.claude/skills/reproduce-results/) | a skill that guides a coding agent (for example Claude Code) through reproducing the results |
 
 ## Reproducing the evaluation
 
-The manuscript describes the following research artifacts:
+### Reproduce the results without a GPU
 
-- System 1 agent implementation and deterministic compiler
-- LLM-agent comparison harness
-- Tool catalogues and labelled evaluation requests
-- Stored decision-model answers and agent records
-- Scorer, reviewed flagged values and LLM completions
-- Scripts to regenerate the figures, main Table 1, Extended Data Tables 3–8 and reported statistics
+Everything below runs on a CPU in minutes. It rebuilds every System 1 call from the stored model answers, rescores
+every agent, and regenerates the tables.
 
-**Important:** This README is prepared from the manuscript. The manuscript does not provide the actual repository directory structure, install command, executable entry points, checkpoint downloads or CLI syntax. Accordingly, no unverified `pip install`, `python ...` or `git clone` commands are presented as working instructions.
+```bash
+git clone https://github.com/eltzanis/SystemOneAgents && cd SystemOneAgents
+(cd data && sha256sum -c --quiet SHA256SUMS.txt) && (cd results && sha256sum -c --quiet SHA256SUMS.txt)   # files intact
+cd code
+conda create -n s1agents python=3.12 && conda activate s1agents
+pip install -e ".[test,figures]"                     # exact versions used: pip install -r requirements-lock.txt
+python -m pytest                                      # no GPU, no model
 
-Once the code and Supplementary Data are added to this repository, link the relevant entry points here:
+# replay: rebuild every System 1 call from the stored answers, compare with the released records
+python scripts/replay_s1.py --catalogue ../data/catalogues/imaging_tools.json \
+    --data ../data/requests/imaging_test.jsonl ../data/requests/external.jsonl \
+    --answers ../results/system1/answers --records ../results/system1/records
+python scripts/replay_s1.py --catalogue ../data/catalogues/biomedical_tools.json \
+    --data ../data/requests/biomedical_test.jsonl \
+    --answers ../results/system1/answers --records ../results/system1/records
 
-| Task | Repository entry point |
-|---|---|
-| Install dependencies | *Add verified setup instructions* |
-| Start local inference server | *Add tested model-specific command* |
-| Configure MCP catalogue | *Add example catalogue/configuration path* |
-| Run a System 1 request | *Add tested invocation/example* |
-| Reproduce benchmark | *Add tested evaluation script* |
-| Regenerate results and figures | *Add validated reproduction command* |
+# analysis: every table of the manuscript
+python scripts/analyse.py --sensitivity --out runs/analysis
+
+# fabrication analysis (Fig. 4a, Extended Data Table 7)
+python scripts/fabrication.py --check-sample --out runs/fabrication
+
+# Table 1: System 1 against LLM agents, category by category
+python scripts/scorecard.py --out runs/scorecard
+
+# figures (needs the figures extra: pip install -e ".[figures]")
+python scripts/figures.py --out runs/figures
+```
+
+Each step writes to `code/runs/`, and its outputs equal the released ones: `results/analysis/` (every table and
+statistic), `results/fabrication/`, `results/scorecard/` (Table 1), and the figures in `figures/`. The figures plot values from `results/analysis/metrics.json`
+and `results/fabrication/`; `figures/figure_data.json` holds the quantities the figure script computes itself (bootstrap
+intervals of argument filling, declines by out-of-scope kind).
+
+The biomedical scorer runs the ClinicalTrials.gov server's own normalisers, so Node.js must be on the PATH.
+
+### Reproduce the runs
+
+Rerunning the agents needs llama.cpp (release b11929) and the model files. [`code/README.md`](code/README.md) gives sources, revisions
+and checksums. The runs used one NVIDIA RTX PRO 5000 Blackwell (48 GB). A decision model gives the same answer to the
+same question on the same hardware and build. On other hardware, small differences in the last digits of the
+probabilities can change a few close decisions: in a check on 117 requests, 0–2 verdicts per model differed between
+the final GPU and an RTX 2080 Ti.
+
+### Use the System 1 agent on your own tools
+
+From `code/`, after installing as above, and with llama.cpp and a decision model set up as [`code/README.md`](code/README.md) describes:
+
+```bash
+s1a serve decider-4b &                                    # llama-server of a model in configs/models.yaml
+s1a plan "Segment the liver and the spleen in /data/ct/p01.nii.gz" \
+    --catalogue ../data/catalogues/imaging_tools.json --model decider-4b
+s1a catalog --servers my_servers.yaml --out my_tools.json # list the tools of your MCP servers
+s1a run "..." --catalogue my_tools.json --servers my_servers.yaml --model decider-4b   # also calls the tool
+```
+
+`plan` prints every decision (question, top options, probabilities) and the call. MCP servers are declared as in
+[`code/configs/servers.example.yaml`](code/configs/servers.example.yaml); agent settings are in
+[`code/configs/agent.yaml`](code/configs/agent.yaml). In Python: `from s1agent import build_agent`.
 
 ### Dataset composition
 
@@ -157,9 +211,14 @@ The **2,249** requests comprise **2,126 custom prompts** and **123 requests take
 
 The primary accuracy analyses use the **1,952 complete + out-of-scope requests**. Missing-required-value behavior is evaluated separately on the 174 underspecified requests. The paper reports exact paired statistical testing with Holm correction, and sensitivity analyses for alternative value-matching rules.
 
+The requests in [`data/`](data/) are this evaluation set: every out-of-scope request, every underspecified request, and
+every complete request whose stated values the System 1 compiler can express. The last condition is checked with the
+compiler oracle in [`code/scripts/oracle.py`](code/scripts/oracle.py).
+Supplementary Table 1 of the manuscript gives the results on all complete requests.
+
 ### Reproducibility and auditing
 
-In the reported experiments, answers were stored under a SHA-256 hash of the model, question kind, state, question and options. With the same model, hardware and llama.cpp build, the authors report deterministic responses and exact replay of the stored System 1 records. The paper reports successful reconstruction of **12,756 System 1 evaluation records** and regeneration of the results from released supplementary artifacts.
+In the reported experiments, answers were stored under a SHA-256 hash of the model, question kind, state, question and options. With the same model, hardware and llama.cpp build, the authors report deterministic responses and exact replay of the stored System 1 records. The paper reports successful reconstruction of **12,756 System 1 evaluation records** and regeneration of the results from the released files; the commands above repeat both from this repository.
 
 ## Limitations
 
@@ -186,4 +245,11 @@ Funded by the European Union under Horizon grant agreement **No. 101287679**. Th
 
 ## License
 
-**License not specified in the manuscript.** Add a `LICENSE` file and specify the software and any data licenses before public release. No open-source license is implied by the presence of this README.
+- **Code:** Apache License 2.0; see [`LICENSE`](LICENSE).
+- **Third-party code in `code/src/s1eval/data/`:** the ClinicalTrials.gov and ChEMBL normalisers are Apache-2.0; the
+  scikit-learn stop-word list is BSD-3-Clause. The licence files are next to them; see
+  [`code/src/s1eval/data/README.md`](code/src/s1eval/data/README.md).
+- **MCP servers:** not included; the catalogues are JSON snapshots of their tool lists.
+- **Models:** not redistributed. Each model's own licence applies: OpenJev is CC-BY-NC-4.0, and the Perplexity models
+  may require accepting their terms on Hugging Face.
+- **External requests:** taken verbatim from the published mAIstro and ReCLAIM notebooks.

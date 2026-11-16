@@ -1,0 +1,46 @@
+{
+ "model": "qwen3.8-27b",
+ "condition": "think",
+ "seed": 20261102,
+ "data": "biomedical_test.jsonl",
+ "settings": "71241d72d06facf9",
+ "settings_detail": {
+  "model": "qwen3.8-27b",
+  "file": "Qwen3.8-27B-Q8_0.gguf",
+  "sha256": "aab65c67ef0dad127960efef9247f1832bca105faa1c7a052cc039b223cf86a1",
+  "chat_template_file": null,
+  "condition": "think",
+  "template": {
+   "enable_thinking": true
+  },
+  "sampling": {
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0.0,
+   "presence_penalty": 0.0
+  },
+  "seed": 20261102,
+  "max_tokens": 16384,
+  "functions": "b87c385cccf54fa7599f5a77c8efcd3cba4dde76df3adc9b0cf1305ce3b432a7"
+ },
+ "answered": 824,
+ "rows": 824,
+ "n": 824,
+ "complete": 626,
+ "oos": 127,
+ "ask_rows": 71,
+ "tool_right": 580,
+ "oos_declined": 80,
+ "correct": 564,
+ "all_correct": 644,
+ "strict": 512,
+ "extras": 72,
+ "ask_no_call": 33,
+ "kind_call": 711,
+ "kind_none": 113,
+ "kind_error": 0,
+ "truncated": 4,
+ "seconds": 25.289947607774522,
+ "completion_tokens": 893.7803398058253
+}

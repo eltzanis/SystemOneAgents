@@ -1,0 +1,38 @@
+[project]
+name = "system1-agents"
+version = "1.0.0"
+description = "System 1 agents: MCP tool use driven by one-pass decision models, the LLM agent baseline and the evaluation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "jsonschema>=4.20",
+    "pyyaml>=6",
+    "numpy>=1.26",
+    "rich>=13",
+    "tokenizers>=0.20",          # decider prompts (decider-4b, decider-35b-a3b)
+    "transformers>=4.50",        # pplx-decider chat template and tokenizer
+    "mcp>=1.29",                 # s1a catalog / s1a run (MCP client)
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+figures = ["matplotlib>=3.10"]
+
+[project.scripts]
+s1a = "s1agent.cli:main"
+s1llm = "llm_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+s1eval = ["data/*.json", "data/*.md", "data/biomed/*", "data/biomed/*/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

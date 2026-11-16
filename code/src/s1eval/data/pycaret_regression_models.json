@@ -1,0 +1,109 @@
+{
+ "about": "PyCaret 3.3.2 regression model IDs and names (pycaret/containers/models/regression.py: the model containers with a lower-case id), in source order. Used only by the scoring sensitivity analysis (scripts/analyse.py --pycaret-lists).",
+ "models": [
+  [
+   "lr",
+   "Linear Regression"
+  ],
+  [
+   "lasso",
+   "Lasso Regression"
+  ],
+  [
+   "ridge",
+   "Ridge Regression"
+  ],
+  [
+   "en",
+   "Elastic Net"
+  ],
+  [
+   "lar",
+   "Least Angle Regression"
+  ],
+  [
+   "llar",
+   "Lasso Least Angle Regression"
+  ],
+  [
+   "omp",
+   "Orthogonal Matching Pursuit"
+  ],
+  [
+   "br",
+   "Bayesian Ridge"
+  ],
+  [
+   "ard",
+   "Automatic Relevance Determination"
+  ],
+  [
+   "par",
+   "Passive Aggressive Regressor"
+  ],
+  [
+   "ransac",
+   "Random Sample Consensus"
+  ],
+  [
+   "tr",
+   "TheilSen Regressor"
+  ],
+  [
+   "huber",
+   "Huber Regressor"
+  ],
+  [
+   "kr",
+   "Kernel Ridge"
+  ],
+  [
+   "svm",
+   "Support Vector Regression"
+  ],
+  [
+   "knn",
+   "K Neighbors Regressor"
+  ],
+  [
+   "dt",
+   "Decision Tree Regressor"
+  ],
+  [
+   "rf",
+   "Random Forest Regressor"
+  ],
+  [
+   "et",
+   "Extra Trees Regressor"
+  ],
+  [
+   "ada",
+   "AdaBoost Regressor"
+  ],
+  [
+   "gbr",
+   "Gradient Boosting Regressor"
+  ],
+  [
+   "mlp",
+   "MLP Regressor"
+  ],
+  [
+   "xgboost",
+   "Extreme Gradient Boosting"
+  ],
+  [
+   "lightgbm",
+   "Light Gradient Boosting Machine"
+  ],
+  [
+   "catboost",
+   "CatBoost Regressor"
+  ],
+  [
+   "dummy",
+   "Dummy Regressor"
+  ]
+ ]
+}
