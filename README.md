@@ -258,3 +258,7 @@ If you use this code or data, please cite:
 ## Funding
 
 Funded by the European Union under Horizon grant agreement **No. 101287679**. The views and opinions expressed are those of the authors and do not necessarily reflect those of the European Union or the European Research Executive Agency (REA). Neither the European Union nor REA can be held responsible for them.
+
+## About the lab
+
+This work was developed at the [Artificial Intelligence and Translational Imaging (ATI) Lab](https://www.atilab.net/) at the University of Crete, Greece.
