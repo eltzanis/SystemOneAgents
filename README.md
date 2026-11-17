@@ -223,13 +223,18 @@ A decision model gives the same answer to the same question on the same hardware
 
 ## Citation
 
-**Tzanis, E. & Klontzas, M. E.** *System 1 agents: a method for local, reliable and fast agentic AI.* (2026).
+If you use this code or data, please cite:
+
+**Tzanis, E. & Klontzas, M. E.** *System 1 agents: a method for local, reliable and fast agentic AI.* arXiv:2611.21053 (2026). https://arxiv.org/abs/2611.21053
 
 ```bibtex
 @misc{tzanis2026system1,
-  title  = {System 1 agents: a method for local, reliable and fast agentic AI},
-  author = {Tzanis, Eleftherios and Klontzas, Michail E.},
-  year   = {2026}
+  title         = {System 1 agents: a method for local, reliable and fast agentic {AI}},
+  author        = {Tzanis, Eleftherios and Klontzas, Michail E.},
+  year          = {2026},
+  eprint        = {2611.21053},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2611.21053}
 }
 ```
 
