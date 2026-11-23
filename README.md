@@ -1,12 +1,25 @@
+
 <div align="center">
   <img src="SystemOneAgents_logo.jpg" alt="System 1 Agents: a System 1 robot ahead of slower LLM agents" width="540">
 
-  **Local, reliable and fast agentic AI without text generation**
+  <h3>Local, reliable and fast agentic AI without text generation</h3>
 
-  *Code, data and results of “System 1 agents: a method for local, reliable and fast agentic AI”*
+  <i>Code, data and results of “System 1 agents: a method for local, reliable and fast agentic AI”</i>
 
-  [Citation](#citation) · [License](#license)
+  <p>
+    <a href="https://arxiv.org/abs/2611.21053">
+      <img src="https://cdn.simpleicons.org/arxiv/B31B1B" height="16" alt="arXiv"> arXiv Paper
+    </a> ·
+    <a href="https://huggingface.co/papers/2611.21053">🤗 Hugging Face Papers</a> ·
+    <a href="https://huggingface.co/datasets/eltzanis/system1-agents-eval">📊 Evaluation Dataset</a>
+  </p>
+
+  <p>
+    <a href="#citation">Citation</a> ·
+    <a href="#license">License</a>
+  </p>
 </div>
+
 
 ---
 
